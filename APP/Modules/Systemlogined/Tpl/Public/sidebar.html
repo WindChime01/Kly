@@ -1,0 +1,106 @@
+<div id="sidebar">
+
+				<div id="sidebar-shortcuts">
+
+				
+
+					<div id="sidebar-shortcuts-mini">
+
+						<span class="btn btn-success"></span>
+
+
+
+						<span class="btn btn-info"></span>
+
+
+
+						<span class="btn btn-warning"></span>
+
+
+
+						<span class="btn btn-danger"></span>
+
+					</div>
+
+				</div><!--#sidebar-shortcuts-->
+
+
+
+				<ul class="nav nav-list">
+
+					<foreach name="nodes.child" item="action">
+					<li <if condition="MODULE_NAME eq $action['name']"> class="open" </if> >
+					<a href="#" class="dropdown-toggle">
+
+							<i class="icons <if condition="$action['icon']">{$action['icon']}<else/>icon-random</if>"></i>
+
+							<span>{$action.title}</span>
+
+							<b class="arrow icon-angle-down"></b>
+
+						</a>
+					<ul class="submenu" <if condition="MODULE_NAME eq $action['name']"> style="display: block;"</if>>
+					<foreach name="action.child" item="vv">
+					
+					<li >
+
+						<a href="{:U($action['name']."/".$vv['name'])}">
+
+							<i class="icon-double-angle-right"></i>
+
+							{$vv.title}
+
+						</a>
+
+					</li>
+
+					</foreach>
+					</ul>
+					</foreach>
+					
+
+				</ul><!--/.nav-list-->
+
+
+
+				<div id="sidebar-collapse">
+
+					<i class="icon-double-angle-left"></i>
+
+				</div>
+
+			</div>
+
+
+
+<script type="text/javascript">
+
+	window.jQuery || document.write("<script src='__PUBLIC__/js/jquery-1.9.1.min.js'>"+"<"+"/script>");
+
+</script>
+<script src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+
+		var method = '{$Think.server.path_info}';
+
+		var middle = method.split('/')[2];
+
+		var end = method.split('/')[3];
+
+
+
+		$('li[sid*='+ middle + end +']').addClass("active open");
+
+		$('li[url*='+ middle + end +']').addClass("active");
+
+	});
+
+	function intoApply($id) {
+		$('#apply_item').val($id);
+		$('#apply_way').attr('action','/systemlogined/gift/applys');
+		$('#apply_way').submit();
+	}
+	
+</script>

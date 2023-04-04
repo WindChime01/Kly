@@ -1,0 +1,4 @@
+1、导入数据库
+2、修改数据库配置文件APP/Conf/config.php
+3、设置伪静态
+4、后台 http://域名/ht.php  用户名：admin   密码：123456

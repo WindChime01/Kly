@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+    <meta name="robots" content="noindex,nofollow">
+
+    <meta name="robots" content="noarchive">
+
+    <!-- 屏蔽-->
+
+    <title>充值</title>
+
+    <meta name="keywords" content=" ">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta content="IE=9; IE=EDGE" http-equiv="X-UA-Compatible">
+
+    <link rel="stylesheet" href="/Public/ybt/css/sm.css">
+
+    <script src="/Public/ybt/js/jquery-1.10.2.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="/Public/ybt/css/sm-extend.css">
+
+
+
+    <link rel="stylesheet" href="/Public/ybt/css/iconfont.css">
+
+    <!--自定义-->
+
+    <link rel="stylesheet" href="/Public/ybt/css/main.css">
+
+    <link rel="stylesheet" href="/Public/ybt/css/order.css">
+
+    <script src="/Public/ybt/js/leftTime.min.js"></script>
+
+
+
+
+
+</head>
+<style>
+    .list-block{
+        font-size: 12px;
+    }
+    .button.button-big{
+        font-size: 14px;
+    }
+    .shade{
+    	background: rgba(0,0,0,0.2);
+    	display: none;
+    	position: absolute;
+    	width: 100%;
+    	height: 900px;
+    	z-index:500;
+    }
+</style>
+
+<body style="">
+
+<div class="shade"></div>
+
+<!-- <div class="page">-->
+
+
+
+<!-- 标题栏 -->
+
+<header class="bar bar-nav">
+
+
+
+    <a style="position: absolute;z-index: 19;width: 94%;text-align: center;display: inline-block;line-height: 2rem;font-size: 0.8rem; color:#FFF;">充值</a>    <div class="logo">
+
+    <a id="cancle" href="javascript:history.go(-1)"><i class="icon icon-left"></i></a>    </div>
+
+    <a class="icon pull-right open-panel"></a></header>
+
+<div class="content" id="main_content" style="margin-bottom: 0">
+
+    <!--<div style="line-height: 28px;margin-top: 5px;">-->
+    <!--    <span style="color: #808080; font-size:14px;margin-left: 20px">转账</span>-->
+    <!--</div>-->
+
+    <!--<hr color="#808080" size="1">-->
+
+    <div class="list-block">
+
+        <form class="cmxform form-horizontal tasi-form" name="form1" id="form1" method="post" action="/index/yuanqi/charge_post" enctype="multipart/form-data">
+
+            <ul>
+				<li>
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">付款方式</div>
+
+                            <div class="item-input" style="color: red;">
+
+                                <select onchange="paytype(this)" style="font-size:12px" id="pay_type">
+                                	<option value="wechat">微信</option>
+                                	<option value="alipay">支付宝</option>
+                                	<option value="bank">银行卡转账</option>
+                                	<option value="usdt">USDT支付</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+                <li id="pic">
+
+                    <div class="item-content">
+
+                        <img src="{$get.wechat}" id="code" style="width:180px;margin:10px auto;" class="img">
+
+                    </div>
+
+                </li>
+
+                <li id="ad" style="display:none">
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">地址</div>
+
+                            <div class="item-input" style="color: red;">
+
+                                <input type="text" name="address" id="address" style="font-size:12px;" readonly value="{$get.usdt_address}">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+                
+                <li id="bank" style="display:none">
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">所属银行</div>
+
+                            <div class="item-input" style="color: red;">
+
+                                <input type="text" name="bank" id="bank" style="font-size:12px;" readonly value="{$get.bank}">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+                <li id="bank_name" style="display:none">
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">银行卡姓名</div>
+
+                            <div class="item-input" style="color: red;">
+
+                                <input type="text" name="bank_name" id="bank_name" style="font-size:12px;" readonly value="{$get.bank_name}">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+                <li id="bank_num" style="display:none">
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">银行卡号</div>
+
+                            <div class="item-input" style="color: red;">
+
+                                <input type="text" name="bank_num" id="bank_num" style="font-size:12px;" readonly value="{$get.bank_num}">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">充值数量</div>
+
+                            <div class="item-input">
+
+                                <input type="number" name="amount" id="amount" style="font-size:12px;" placeholder="请输入要充值的数量" value="" onkeyup="num(this)">
+
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </li>
+                
+                <li>
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">所需数额</div>
+
+                            <div class="item-input">
+
+                                <input type="text" name="total" id="total" style="font-size:12px;color:red" value="0.00">
+
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">二级密码</div>
+
+                            <div class="item-input">
+
+                                <input id="ejmm" class="col-20" style="font-size:12px;" type="password" placeholder="请输入二级密码" name="ejmm" value="">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+                
+                <li>
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">充值流程</div>
+
+                            <div class="item-input">
+                            	<div style="margin:8px 0">
+                            	<p>1、充值前，请选择付款方式</p>
+                            	<p>2、请输入充值数量，系统会对应出现需要付款的金额（红色字体显示），并向指定用户付款。</p>
+                            	<p>3、请确认充值金额无误且已付款，输入二级密码后并点击确认充值即可。</p>
+                            	<p>4、确认后等待管理员确认并发放星际元气值，如有疑问请联系邮箱：test@qq.com。</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+				<li>
+
+                    <div class="item-content">
+
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+
+                        <div class="item-inner">
+
+                            <div class="item-title label">付款截图</div>
+
+                            <div class="item-input">
+
+                                <a onclick="uploadfile()" id="upload" class="button button-danger js-tixian-submit" style="margin:8px 0">上传图片</a>
+                                
+                                <input type="file" name="image" id="image" style="display:none">
+                                
+                                <img src="" style="width:86%;" id="uploadimg" class="img">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </form>
+
+    </div>
+
+
+    <div class="content-block">
+
+        <div class="row">
+        	
+            <div class="col-50"><a onclick="check();" id="submit" class="button button-big button-fill button-danger js-tixian-submit">确认充值</a></div>
+
+            <div class="col-50"><a href="{:U('Yuanqi/index')}" class="button button-big button-fill button-dark">取消</a></div>
+
+        </div>
+
+    </div>
+    
+    <div class="imgshow" style="display: none;z-index: 1000;position: fixed;top: 50%;left: 50%;transform: translate(-50%,-50%);">
+	    <img src="" onclick="imgclose()" style="z-index: 1001;width:100%">
+	</div>
+
+    <!--表单结束-->
+
+</div>
+
+<script type="text/javascript" src="/Public/ybt/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/Public/ybt/js/layer/layer.js"></script>
+<script type="text/javascript">
+	var rate = {:C("rate")};
+	var rate2 = {:C("rate2")};
+    function num(obj){
+    	if ($("#pay_type").val() != "usdt"){
+    		$("#total").val((obj.value * rate).toFixed(2));
+    	}else{
+    		$("#total").val((obj.value * rate2).toFixed(2));
+    	}
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+    }
+    
+    function paytype(obj){
+    	var type = obj.value;
+    	$("#amount").val("");
+    	$("#total").val("0.00");
+    	switch (type){
+    		case "wechat":
+    			$("#pic").show();
+    			$("#ad").hide();
+    			$("#bank").hide();
+    			$("#bank_name").hide();
+    			$("#bank_num").hide();
+    			$("#code").attr("src","{$get.wechat}");
+    			break;
+    		case "alipay":
+    			$("#pic").show();
+    			$("#ad").hide();
+    			$("#bank").hide();
+    			$("#bank_name").hide();
+    			$("#bank_num").hide();
+    			$("#code").attr("src","{$get.alipay}");
+    			break;
+    		case "bank":
+    			$("#pic").hide();
+    			$("#ad").hide();
+    			$("#bank").show();
+    			$("#bank_name").show();
+    			$("#bank_num").show();
+    			break;
+    		case "usdt":
+    			$("#pic").show();
+    			$("#ad").show();
+    			$("#bank").hide();
+    			$("#bank_name").hide();
+    			$("#bank_num").hide();
+    			$("#code").attr("src","{$get.usdt_paycode}");
+    			break;
+    	}
+    	
+    }
+    
+    function uploadfile(){
+    	$("#image").click();
+    }
+    var input = $("#image")[0]
+	input.addEventListener('change', ()=>{
+	    console.log(input.files)
+	    const reader = new FileReader()
+	    reader.readAsDataURL(input.files[0])
+	    reader.onload = ()=>{
+	      const img = new Image()
+	      img.src = reader.result
+	      $("#uploadimg").attr("src",img.src);
+	      $("#uploadimg").css("margin","12px auto");
+	    }
+	}, false)
+    
+    function check(){
+    	var amount = $("#amount").val();
+    	var image = $("#image")[0].files[0];
+    	if (image == undefined){
+    		layer.msg("请上传付款截图");
+    		return false;
+    	}
+    	layer.confirm("请确认充值"+amount+"个星际元气值，并已向该账户打款。",function(){
+    		var data = new FormData();
+    		data.append("paytype",$("#pay_type").val());
+    		if ($("#pay_type").val() == "bank"){
+    			data.append("bank",$("#bank").val());
+    			data.append("bank_num",$("#bank_num").val());
+    			data.append("bank_name",$("#bank_name").val());
+    		}else if ($("#pay_type").val() == "usdt"){
+    			data.append("address",$("#address").val());
+    		}
+    		data.append("image",$("#image")[0].files[0]);
+    		data.append("amount",$("#amount").val());
+    		data.append("ejmm",$("#ejmm").val());
+    		$.ajax({
+    			url:"/index/yuanqi/charge_post",
+    			type: "POST",
+    			async: false,
+    			data: data,
+    			processData : false, // 使数据不做处理
+        		contentType : false,
+    			success: function(res){
+    				layer.closeAll();
+    				layer.msg(res.msg,{time:1500},function(){
+    					if(res.success == 1){
+    						window.location.reload();
+    					}
+    				});
+    			}
+    		})
+    		return false;
+    	})
+    }
+    
+	$(".img").click(function(){
+		var src = this.src;
+		var width = $(window).width() - 80;
+		$(".imgshow").find("img").attr("src",src);
+		$(".imgshow").find("img").css("width",width);
+		$(".imgshow").fadeIn("fast");
+		$(".shade").fadeIn("fast");
+	})
+	function imgclose(){
+		$(".imgshow").fadeOut("fast");
+		$(".shade").fadeOut("fast");
+	}
+</script>
+
+</body>
+</html>

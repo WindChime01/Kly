@@ -1,0 +1,250 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- saved from url=(0049)http://porter.weiyinstudio.com/Home/Myuser/jihuo2/zt/0/ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+	<meta name="robots" content="noindex,nofollow">
+
+	<meta name="robots" content="noarchive">
+
+	<!-- 屏蔽-->
+
+	<title>我的矿机</title>
+
+	<meta name="keywords" content=" ">
+
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<meta content="IE=9; IE=EDGE" http-equiv="X-UA-Compatible">
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm.css">
+
+	<script src="/Public/ybt/js/jquery-1.10.2.min.js"></script>
+
+
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm-extend.css">
+
+
+
+	<link rel="stylesheet" href="/Public/ybt/css/iconfont.css">
+
+	<!--自定义-->
+
+	<link rel="stylesheet" href="/Public/ybt/css/main.css">
+
+	<link rel="stylesheet" href="/Public/ybt/css/order.css">
+	<style>
+	.receive{
+		color: white;
+		margin:0 0 1.5rem 0.5rem;
+	}
+	.Bar { position: relative; width: 100%;
+		/* 宽度 */ 
+		background: #DBD9D9;
+		border-radius: 10px;}
+
+	.Bar div{ display: block; position: relative;
+		background:#3987F3;/* 进度条背景颜色 */ color: #333333;
+		height: 6px; /* 高度 */ line-height: 6px;
+		border-radius: 6px;
+		/* 必须和高度一致，文本才能垂直居中 */ }
+	.Bar div span{ position: absolute; width: 100%;
+		/* 宽度 */ text-align: center; font-weight: bold; }
+		
+	.bar-nav {background:url('/Public/ybt/image/new/kuang-bg.png');background-size:100% 100%;}
+	.able-a{height:100%;line-height:2rem;font-size:0.7rem;color:#fff;display:block;width:50%;float:left;position:relative;}
+	.able-a::after{position:absolute;content:' ';width:20px;height:6px;background:#fff;bottom:0;left:50%;margin-left:-10px;border-radius:20px;}
+	
+	.kuang-div{width:85%;margin: 10px auto; margin-bottom:30px;height:300px;background:rgba(23, 72, 165, 0.5);overflow:hidden;border-radius:20px;}
+	.kuang-top{width:100%;height:55%;float:left;overflow:hidden;background:#CBD6DE;text-align:center;}
+	.kuang-top img{height:100%;}
+	.kuang-bottom{width:100%;height:45%;float:left;padding-left:1rem;background:#253057;position:relative}
+	.price{color:#3A83F6;}
+	.brief{color:#C2C7E4;}
+	.status{color:#fff;border-radius:20px;border-top-left-radius:0;background-image:linear-gradient(to right,#6DB8F9,#3A83F6);display: inline-block;font-size:0.7rem;font-weight:400;margin-top:10px;
+		padding:5px 15px;}
+	.status-dad{position: absolute;bottom:20px;right:20px;}
+	.content{z-index:999;margin-top:105px;}
+	.agreement{color:#fff;border-radius:20px;border-top-left-radius:0;background-image:linear-gradient(to right,#ef7a56,#f00);display: inline-block;font-size:0.7rem;font-weight:400;margin-top:10px;
+		padding:5px 15px;}
+	</style>
+</head>
+
+<body>
+
+
+<div class="page">
+
+
+
+<!-- 标题栏 -->
+
+<header class="bar bar-nav" style="min-height:250px;overflow:hidden;position:relative">
+
+	<a class="top-title">我的矿机<span style="float:right;font-size:15px;line-height:1.2rem;" onclick="window.location.href='<?php echo U('/Index/account/mysl');?>'">矿机算力</span></a>
+	<!--<div style="position:none;margin:0 1rem;text-align:center;margin-top:2rem">-->
+	<!--	<div style="width:49%;float:left;border-right:1px solid #fff">-->
+	<!--		<p style="font-size:1.4rem;line-height:2rem"> <?php echo ($ipfs); ?> </p>-->
+	<!--		<p style="font-size:0.6rem;line-height:1.5rem">累计总量(FIL)</p>-->
+	<!--	</div>-->
+	<!--	<div style="width:49%;float:left;border-left:1px solid #fff">-->
+	<!--		<p style="font-size:1.4rem;line-height:2rem"> <?php echo ($suanli); ?> </p>-->
+	<!--		<p style="font-size:0.6rem;line-height:1.5rem">累计算力(T)</p>-->
+	<!--	</div>-->
+	<!--</div>-->
+	
+	
+	<div class="" style="width:50%;margin:0.5rem 25%;color:#fff;height:2rem;text-align:center;border-radius:10px;overflow:hidden;padding:0">
+	
+			<!--<a href="<?php echo U('Index/Shop/orderlist');?>" class="active button">正常矿机(<?php echo ($kjnum); ?>)</a>-->
+	
+			<!--<a href="<?php echo U('Index/Shop/daoqi');?>" class=" button">到期矿机</a>-->
+	
+			<a href="<?php echo U('Index/Shop/orderlist');?>" class="able-a">有效矿机</a>
+	
+			<a href="<?php echo U('Index/Shop/daoqi');?>" class="" style="height:100%;line-height:2rem;font-size:0.7rem;color:#D6DCF6;display:block;width:50%;float:left;">无效矿机</a>
+	</div>
+	<a class="icon pull-right open-panel"></a>
+</header>
+
+
+<nav class="foot-bar">
+
+	<div class="foot-menu"><a href="<?php echo U('Index/Emoney/shouye');?>">
+
+		<i class="iconfont icon-shouye"></i><span>首页</span></a></div>
+		
+		<div class="foot-menu"><a href="<?php echo U('Index/Shop/index');?>">
+
+			<i class="iconfont icon-gouwuche"></i><span>矿机商城</span></a></div>
+
+	<div class="foot-menu"><a href="<?php echo U('Index/Shop/orderlist');?>" style="color:#5d93ea">
+
+		<i class="iconfont icon-wxbmingxingdianpu"></i><span>我的矿机</span></a></div>
+
+	<!--<div class="foot-menu"><a href="javascript:layer.open({content: '敬请期待',skin: 'msg',time: 2});">-->
+
+	<!--		<i class="iconfont icon-gouwuche"></i><span>交易中心</span></a></div>-->
+
+	<div class="foot-menu"><a href="/">
+
+		<i class="iconfont icon-geren"></i><span>会员中心</span></a></div>
+
+</nav>
+
+
+
+
+<script type="text/javascript">
+
+    $(function() {
+
+        $("#cancle").click(function() {
+
+            $.router.back();
+
+        });
+
+    });
+
+</script>
+
+
+
+<div class="content" id="main_content" style="position:none;">
+	<div class="tabs">
+
+		<!--class card-->
+		<div class="" style="background:none">
+
+			<?php if($kjnum != 0): if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="kuang-div">
+						<div class="kuang-top">
+							<img src="<?php echo ($vo["imagepath"]); ?>">
+						</div>
+						<div class="kuang-bottom">
+                            <div style="width: 100%;height:3rem;float:left;margin:10px 0px;">
+                                <div align="left" style="color:#fff;font-size: 1.1rem;margin-bottom:5px">
+                                    <?php echo ($vo["project"]); ?>
+                                    
+                                    <!--						收益<?php echo ($vo["kjsl"]); ?>/天-->
+                                </div>
+                                <!--<br>-->
+                                <div align="left"  style="color:#D6D6D6;font-size: 0.7rem;line-height:1rem">
+                                	<!--<p class="brief"> </p>--><br>
+                                	<p class="price">算力：<span ><?php echo (set_number($vo["lixi"],'1')); ?></span></p>
+                                	<!--<p style="color:#fff;">运行中（天）：<?php echo (set_number($vo["a_time"],'0')); ?>/<?php echo ($vo["yxzq"]); ?></p>-->
+                                </div>
+                                <div class="status">
+                                	运行中
+                                </div>
+                            </div>
+                            <div class="status-dad">
+                            	<a href="/index/shop/agreement?id=<?php echo ($vo["id"]); ?>">
+                            	<div class="agreement">
+                                	签署协议
+                                </div>
+                                </a>
+                             <!--   <div class="status">-->
+                             <!--   	运行中-->
+                             <!--   </div>-->
+                            </div>
+						</div>
+
+
+	<!--					<td align="center" valign="middle"><?php echo ($vo["kjbh"]); ?></td>-->
+					</div><?php endforeach; endif; else: echo "" ;endif; ?>
+			<?php else: ?>
+			<div align="center">
+				<!--<img src="/Public/ybt/image/mmlist.png" alt="" style="margin: 30% 25% 0 25%;width: 50%"/>-->
+				<p style="text-align: center;color: #6d91d6;margin-top:50%;font-size:12px;">暂无矿机</p>
+			</div><?php endif; ?>
+
+		</div>
+
+	</div>
+	<?php if($kjnum != 0): ?><div style="text-align: center;color:#808080;font-size:12px">没有了</div><?php endif; ?>
+<br>
+
+
+
+
+
+
+
+
+</div>
+
+<script type="text/javascript" src="/Public/ybt/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/Public/ybt/js/layer/mobile/layer.js"></script>
+<script>
+	var width = document.body.clientWidth;
+	var height = document.body.clientHeight;
+	var bili = width / height;
+	function getNaturalWidth(imgsrc) {
+	    var image = new Image();
+	    image.src = imgsrc;
+	    var naturalWidth = image.width;
+	    var naturalHeight = image.height;
+	    var bili = naturalWidth / naturalHeight;
+	    return bili;
+	}
+	var realBili = getNaturalWidth('/Public/ybt/image/bg_index@2x.png');
+
+	if(realBili > bili) {
+		//高取全屏
+		$('body').css('background-size','auto 100%');
+	} else {
+		//宽取全屏
+		$('body').css('background-size','100% auto');
+	}
+</script>
+
+</body></html>

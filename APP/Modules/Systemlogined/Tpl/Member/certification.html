@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/layui/css/layui.css">
+	<script src="/Public/ybt/js/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+	<script src="__PUBLIC__/layui/layui.all.js"></script>
+</head>
+<body>
+	
+</body>
+</html>
+<div class="layui-tab">
+  <ul class="layui-tab-title" style="padding-left:20px">
+    <li class="layui-this" >{$info.id}-{$info.username} 的实名信息</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div style="text-align:center;width:80%;margin:0 auto" class="infotable">
+		<table class="layui-table">
+			<colgroup>
+				<col width="100">
+				<col width="200">
+			</colgroup>
+			<tr>
+				<td>姓名</td>
+				<td>{$info.truename}</td>
+			</tr> 
+			<tr>
+				<td>证件号码</td>
+				<td>{$info.shenfen}</td>
+			</tr>
+			
+			<tr>
+				<td>证件图片</td>
+				<td><img src="{$info.image}" style="width:100%"></td>
+			</tr>
+			<tr>
+				<td>状态</td>
+				<td id="tip">{$info.status_im}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<if condition="$info['status'] == 1">
+		<div style="text-align:center" class="btns"><button type="button" class="layui-btn" onclick="pass({$info.id},2)">通过</button> <button type="button" class="layui-btn layui-btn-danger" onclick="pass({$info.id},3)">不通过</button></div>
+	</if>
+	
+  </div>
+</div>
+<script>
+	//通过审核
+	function pass(id,type) {
+		$.post('/systemlogined/member/certificationPass',{id:id,type:type},function(response){
+			$res = JSON.parse(response);
+			layer.msg($res.msg);
+			console.log($res.success);
+			if($res.success == 1) {
+				$('.btns').hide();
+				$('#tip').text($res.data.msg);
+			}
+		})
+	}
+
+</script>

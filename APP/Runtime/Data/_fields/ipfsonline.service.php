@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'qrcode', 2 => 'tel', 3 => 'email', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'tinyint(1)', 'qrcode' => 'text', 'tel' => 'varchar(20)', 'email' => 'varchar(30)', ), );?>

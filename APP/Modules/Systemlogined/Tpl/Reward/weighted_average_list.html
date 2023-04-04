@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>加权平均分红列表</title>
+
+
+
+		<meta name="description" content="Static &amp; Dynamic Tables" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+		<!--basic styles-->
+
+
+
+		<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+
+		<link href="__PUBLIC__/css/bootstrap-responsive.min.css" rel="stylesheet" />
+
+		<link href="__PUBLIC__/css/animate.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css" />
+
+		<!-- 分页样式 -->
+
+		<link rel="stylesheet" href="__PUBLIC__/css/page.css" />
+
+
+
+		<style type="text/css" title="currentStyle">
+
+			@import "__PUBLIC__/css/TableTools.css";
+
+		</style>
+
+
+
+		<!--[if IE 7]>
+
+		  <link rel="stylesheet" href="__PUBLIC__/css/font-awesome-ie7.min.css" />
+
+		<![endif]-->
+
+
+
+		<!--page specific plugin styles-->
+
+
+
+		<!--bbc styles-->
+
+
+
+		<link rel="stylesheet" href="__PUBLIC__/css/bbc.min.css" />
+
+		<link rel="stylesheet" href="__PUBLIC__/css/bbc-responsive.min.css" />
+
+		<link rel="stylesheet" href="__PUBLIC__/css/bbc-skins.min.css" />
+
+		<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+
+		<!--[if lte IE 8]>
+
+		  <link rel="stylesheet" href="__PUBLIC__/css/bbc-ie.min.css" />
+
+		<![endif]-->
+
+
+
+		<!--inline styles if any-->
+
+	</head>
+
+
+
+	<body>
+
+		<!--导航-->
+
+		<include file="Public:navbar" />
+
+
+
+		<div class="container-fluid" id="main-container">
+
+			<a id="menu-toggler" href="#">
+
+				<span></span>
+
+			</a>
+
+
+
+			<!--边栏-->
+
+			<include file="Public:sidebar" />
+
+
+
+			<div id="main-content" class="clearfix">
+
+				<div id="breadcrumbs">
+
+					<ul class="breadcrumb">
+
+						<li>
+
+							<i class="icon-home"></i>
+
+							Home
+
+
+
+							<span class="divider">
+
+								<i class="icon-angle-right"></i>
+
+							</span>
+
+						</li>
+
+						<li class="active">加权平均分红列表</li>
+
+					</ul><!--.breadcrumb-->
+
+				</div>
+
+
+
+				<div id="page-content" class="clearfix">
+
+
+
+					<div class="row-fluid">
+
+						<!--PAGE CONTENT BEGINS HERE-->
+
+						<form id="table-searchbar" method="POST" class="form-inline well well-small">
+
+							<div class="row-fluid" style="margin-bottom: 20px">&nbsp;&nbsp;
+								<select class="span3" name="type" style="width: 100px;">
+
+									<option value="1" <if condition="$type eq 1">selected="selected"</if>>编号</option>
+
+									<option value="2" <if condition="$type eq 2">selected="selected"</if>>级别</option>
+
+									<option value="3" <if condition="$type eq 3">selected="selected"</if>>姓名</option>
+
+									<option value="4" <if condition="$type eq 4">selected="selected"</if>>手机号</option>
+
+								</select>
+
+				                <input type="text" class="input-small" name="typename" value="{$typename}">    
+
+		                        &nbsp;&nbsp;
+
+								<button type="submit" class="btn btn-small no-border" id="btn-query" type="button"><i class="icon-search"></i>查询</button>
+
+								&nbsp;&nbsp;
+
+								<button type="button"  onclick="return clear1()" class="btn btn-success btn-small no-border" id="btn-compute" type="button">导出所查询信息</button>
+								&nbsp;&nbsp;
+								<button type="button"  onclick="return clear2()" class="btn btn-success btn-small no-border" >导出全部信息</button>
+			
+
+							</div>
+
+						</form>
+
+						<form id="table-searchbar" method="POST" class="form-inline well well-small">
+
+							<div class="row-fluid">&nbsp;&nbsp;今日矿池代币总量:{$total_coins}
+
+								<if condition="$reward_status eq '一键分配'">
+									<button type="button"  onclick="change_reward_status()" class="btn btn-info btn-small no-border" id="btn-query" type="button" style="margin-left:50px;">{$reward_status}</button>
+								<else/>
+									<button type="button"  onclick="change_reward_status()" class="btn  btn-small no-border" id="btn-query" type="button" style="margin-left:50px;">{$reward_status}</button>
+								</if>
+
+							</div>
+
+						</form>
+
+
+
+						<div class="row-fluid">
+
+							<table id="table_report" class="table table-striped table-bordered table-hover">
+
+								<thead>
+
+									<tr>
+
+									<th>编号</th>
+
+									<th>级别</th>
+
+									<th>姓名</th>
+
+									<th>手机号码</th>
+
+									<th>分红(fil)</th>
+
+									</tr>
+
+								</thead>
+
+								<tbody>
+
+										<foreach name='list' item='v'>
+
+										<tr>
+
+										  	 <td>{$v.id}</td>
+
+											 <if condition="$v.level_name eq NULL">
+												 <td>无</td>
+										 	 <else/>
+												 <td>{$v.level_name}</td>
+											 </if>
+
+											 <td>{$v.username}</td>
+
+											 <td>{$v.mobile}</td>
+
+
+										 	 <if condition="$v.total_weighted_average eq NULL">
+										 		 <td>0</td>
+										  	 <else/>
+											 	<td>{$v.total_weighted_average}</td>
+											</if>
+											
+										</tr> 
+
+									   </foreach>
+
+									<tr>
+
+										<td colspan="11" style="text-align:center;"><div class="page">{$page}</div></td>
+
+									</tr>
+
+								</tbody>
+
+							</table>
+
+						</div>
+
+						<!--PAGE CONTENT ENDS HERE-->
+
+					</div><!--/row-->
+
+				</div><!--/#page-content-->
+
+			</div><!--/#main-content-->
+
+		</div><!--/.fluid-container#main-container-->
+
+
+
+		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+
+			<i class="icon-double-angle-up icon-only bigger-110"></i>
+
+		</a>
+
+		<script type="text/javascript">
+
+			function change_reward_status(){
+				$.post("{:U(GROUP_NAME .'/Reward/change_reward_status')}","",function(e){
+					// console.log("{:U(GROUP_NAME .'/Reward/change_reward_status')}");
+					alert(e.msg)
+					$('#btn-query').removeClass('btn-info');
+					$('#btn-query').html(e.status);
+				},'json')
+			}
+
+			function clear1(){
+
+				if(confirm("确认要导出所查询信息吗?")){
+					$('#table-searchbar').attr('action',"{:U(GROUP_NAME .'/Reward/excel?type=1')}").submit();
+					$('#table-searchbar').removeAttr('action');
+				}
+
+			}
+
+			function clear2(){
+
+				if(confirm("确认要导出全部信息吗?")){
+					$('#table-searchbar').attr('action',"{:U(GROUP_NAME .'/Reward/excel?type=2')}").submit();
+					$('#table-searchbar').removeAttr('action');
+				}
+			}
+
+
+		</script>
+
+
+		<!--basic scripts-->
+
+		<script src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+
+
+
+		<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+
+
+
+		<!--page specific plugin scripts-->
+
+		<script src="__PUBLIC__/js/bootbox.min.js"></script>
+
+		<script src="__PUBLIC__/js/jquery.dataTables.min.js"></script>
+
+		<script src="__PUBLIC__/js/jquery.dataTables.bootstrap.js"></script>
+
+		<script src="__PUBLIC__/js/TableTools.min.js"></script>
+
+		<!--bbc scripts-->
+
+
+
+		<script src="__PUBLIC__/js/bbc-elements.min.js"></script>
+
+		<script src="__PUBLIC__/js/bbc.min.js"></script>
+
+
+
+		<script src="__PUBLIC__/js/bootstrap.notification.js"></script>
+
+		<script src="__PUBLIC__/js/jquery.easing.1.3.js"></script>
+
+		<!--inline scripts related to this page-->
+
+	</body>
+
+</html>
+

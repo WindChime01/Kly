@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- saved from url=(0049)http://porter.weiyinstudio.com/Home/Myuser/jihuo2/zt/0/ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+	<meta name="robots" content="noindex,nofollow">
+
+	<meta name="robots" content="noarchive">
+
+	<!-- 屏蔽-->
+
+	<title>ipfs账户明细</title>
+
+	<meta name="keywords" content=" ">
+
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<meta content="IE=9; IE=EDGE" http-equiv="X-UA-Compatible">
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm.css">
+
+	<script src="/Public/ybt/js/jquery-1.10.2.min.js"></script>
+
+
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm-extend.css">
+
+
+
+	<link rel="stylesheet" href="/Public/ybt/css/iconfont.css">
+
+	<!--自定义-->
+
+	<link rel="stylesheet" href="/Public/ybt/css/main.css">
+
+	<link rel="stylesheet" href="/Public/ybt/css/order.css">
+	<style>
+	.receive{
+		color: white;
+		margin:0 0 1.5rem 0.5rem;
+	}
+	.Bar { position: relative; width: 100%;
+		/* 宽度 */ 
+		background: #DBD9D9;
+		border-radius: 10px;}
+
+	.Bar div{ display: block; position: relative;
+		background:#3987F3;/* 进度条背景颜色 */ color: #333333;
+		height: 6px; /* 高度 */ line-height: 6px;
+		border-radius: 6px;
+		/* 必须和高度一致，文本才能垂直居中 */ }
+	.Bar div span{ position: absolute; width: 100%;
+		/* 宽度 */ text-align: center; font-weight: bold; }
+	hr{height:1px;border:none;border-top:1px solid #fff;width:1rem}
+	.line_m{text-decoration:line-through;width:1rem}
+	table tr td {line-height: 2rem;}
+	.logo{position: absolute;top:0;left:0}
+	.chartbtn{font-size:11px;border-radius:6px;border:none;background-color:#C6C4CA;padding:0 3px}
+	.chartbtna{background-color:#4099FC}
+	.detail-div{width:90%;margin: 1rem auto;min-height:50px;line-height;overflow:hidden;linear-gradient(left,#2B60C6,#1748A5);background-image: -webkit-linear-gradient(left,#2B60C6,#1748A5);color:#fff;border-radius:5px;padding:10px}
+	.detail-div ul{padding: 0 15px;}
+	.detail-div ul li{height: 48px;margin: 12px 0;}
+	.detail-div ul li p{height: 50%;width: 100%;line-height: 24px;}
+	.first-text .detail-topic{color: #fff;font-size: 16px;float: left;}
+	.first-text .detail-num{color: #F3AA5D;font-size: 16px;float: right;}
+	.second-text .detail-topic{color: #D6D6D6;font-size: 14px;float: left;}
+	.second-text .detail-num{color: #D6D6D6;font-size: 14px;float: right;}
+	.lefttab{height:100%;line-height:1.8rem;font-size:0.7rem;color:#fff;display:block;width:50%;float:left;border:2px solid #1748A5;border-radius:10px 0 0 10px}
+	.righttab{height:100%;line-height:1.8rem;font-size:0.7rem;color:#fff;display:block;width:50%;float:left;border:2px solid #1748A5;border-radius:0 10px 10px 0}
+	.lefttab.active,.righttab.active{background:rgba(23, 72, 165, 1);}
+	</style>
+</head>
+
+<body style="background: url('/Public/ybt/image/bg_index@2x.png') no-repeat top center; background-size:100%;">
+
+
+
+<!--    <div class="page">-->
+
+
+
+<!-- 标题栏 -->
+
+<div class="bar bar-nav" style="background:url('/Public/ybt/image/header@2x.png')  no-repeat top center; background-size:cover;min-height:230px;overflow:hidden;position:relative">
+
+
+
+	<a style="position: none;z-index: 19;width: 100%;text-align: center;display: inline-block;line-height: 50px;font-size: 0.85rem; color:#FFF;">IPFS币</a>
+	<div class="logo">
+		<a  href="javascript:history.go(-1)"><i class="icon icon-left"></i></a>
+	</div>
+	<div style="width:90%;margin:auto;">
+		<div style="width:40%;margin:auto;color:#D6D6D6">
+			<div style="width:25%;float:left;text-align:right;border-top:1px solid #fff;margin-top:0.75rem"></div>
+			<div style="width:50%;float:left;text-align:center;height:1.5rem;line-height:1.5rem;font-size:0.85rem">总收益</div>
+			<div style="width:25%;float:left;text-align:left;border-top:1px solid #fff;margin-top:0.75rem"></div>
+		</div>
+		<div style="width:100%;float:left;text-align:center;margin-bottom:1rem">
+			<p style="font-size:1.6rem;line-height:2rem">0</p>
+		</div>
+	</div>
+	<div style="position:none;margin:0 1rem;text-align:center;margin-top:1rem">
+		<div style="width:50%;float:left;border-right:1px solid #fff">
+			<p style="font-size:1.2rem;line-height:2rem"> 0 </p>
+			<p style="font-size:0.6rem;line-height:1.5rem">昨日收益（FIL）</p>
+		</div>
+		<div style="width:50%;float:left;border-left:1px solid #fff">
+			<p style="font-size:1.2rem;line-height:2rem"> 0 </p>
+			<p style="font-size:0.6rem;line-height:1.5rem">分红收益（FIL）</p>
+		</div>
+	</div>
+	<a class="icon pull-right open-panel"></a>
+</div>
+<div class="content" id="main_content" style="margin-top:180px;margin-bottom:0">
+<div style="position:relative;top:18px;left:100px;z-index:100000;width:100px;height:0px">
+	<button class="chartbtn chartbtna" onclick="changechart(1,this)">近一周</button>
+	<button class="chartbtn" onclick="changechart(2,this)">近一月</button>
+</div>
+
+
+<div id="line" style="height:200px;background:url('/Public/ybt/image/header@2x.png')  no-repeat top center;margin-top:10px"></div>
+
+	<div class="" style="width:50%;margin:1rem 25%;color:#fff;height:2rem;text-align:center;border-radius:10px;overflow:hidden;padding:0">
+
+		<!--<a href="{:U('Index/Shop/orderlist')}" class="active button">正常矿机({$kjnum})</a>-->
+
+		<!--<a href="{:U('Index/Shop/daoqi')}" class=" button">到期矿机</a>-->
+
+		<a href="javascript:;" class="tab lefttab active">收入</a>
+
+		<a href="javascript:;" class="tab righttab">支出</a>
+	</div>
+
+	<div class="tabs">
+		<!--class card-->
+		<div class="detail-div">
+			<ul>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li><li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+				<li>
+					<p class="first-text"><span class="detail-topic">充值驳回</span><span class="detail-num">+80</span></p>
+					<p class="second-text"><span class="detail-topic">成功提现支付宝</span><span class="detail-num">12-24 11:33</span></p>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div style="text-align: center;color:#808080;font-size:12px">没有了</div>
+
+<br>
+</div>
+</body>
+
+<script src="/Public/ybt/js/echarts.min.js"></script>
+<script>
+var myChart = echarts.init(document.getElementById('line'))
+var option = {
+	title:{
+		text: "IPFS成交量",
+		textStyle:{
+			color: "#fff",
+			fontWeight: "lighter",
+			fontSize: 16,
+		},
+		padding: [10,15]
+	},
+	tooltip : {
+        trigger: 'axis'
+    },
+	grid: {
+        top: '20%',
+        left: "15%",
+        bottom: "15%"
+    },
+    legend: {
+        data: [{
+		    name: '收入',
+		    // 强制设置图形为圆。
+		    textStyle: {
+		        color: '#4099FC'
+		    }
+		},{
+		    name: '支出',
+		    // 强制设置图形为圆。
+		    textStyle: {
+		        color: '#F3AA5D'
+		    }
+		}],
+        right:"3%",
+        top:"4%"
+    },
+    xAxis: {
+        axisLine: {
+            lineStyle: {
+                color: "#fff",
+            }
+        },
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLine: {
+            lineStyle: {
+                color: "#fff",
+            }
+        },
+        splitLine: {
+            show: false
+        }
+    },
+    series: [{
+    	name: "收入",
+        data: [12, 24, 15, 25, 14, 25, 16],
+        symbolSize:8,
+        smooth: true,
+        lineStyle:{
+        	color: "#4099FC"
+        },
+        type: 'line'
+    },{
+    	name: "支出",
+    	symbolSize:8,
+    	smooth: true,
+    	lineStyle:{
+        	color: "#F3AA5D"
+        },
+        data: [26, 12, 23, 16, 26, 17, 21],
+        type: 'line'
+    }]
+};
+myChart.setOption(option);
+
+var width = document.body.clientWidth;
+//自适应宽度
+if (width >= 480){
+	$(".bar.bar-nav").css("min-height","260px");
+	$("#main_content").css("margin-top","200px");
+}
+
+function changechart(t,obj){
+	$(".chartbtn").removeClass("chartbtna");
+	$(obj).addClass("chartbtna");
+	if (t == 1){
+		option.series[0].data = [12, 24, 15, 25, 14, 25, 16]
+		option.series[1].data = [26, 12, 23, 16, 26, 17, 21]
+	}else if (t == 2){
+		option.series[0].data = [13, 25, 11, 28, 13, 24, 12]
+		option.series[1].data = [28, 14, 23, 11, 22, 14, 25]
+	}
+	myChart.setOption(option);
+}
+
+$(".tab").click(function(){
+	$(".tab").removeClass("active");
+	$(this).addClass("active")
+})
+</script>
+</html>

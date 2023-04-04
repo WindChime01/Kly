@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+	<meta name="robots" content="noindex,nofollow">
+
+	<meta name="robots" content="noarchive">
+
+	<!-- 屏蔽-->
+
+	<title>提现</title>
+
+	<meta name="keywords" content="">
+
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<meta content="IE=9; IE=EDGE" http-equiv="X-UA-Compatible">
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm.css">
+
+	<script src="/Public/ybt/js/jquery-1.10.2.min.js"></script>
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm-extend.css">
+
+	<link rel="stylesheet" href="/Public/ybt/css/iconfont.css">
+
+	<link rel="stylesheet" href="/Public/ybt/css/main.css">
+
+	<link rel="stylesheet" href="/Public/ybt/css/order.css">
+
+	<link rel="stylesheet" href="/Public/ybt/css/layui.css">
+	<!-- 变量声明  -->
+
+
+	<style>
+		.info-top .uphoto img{
+			width:70px;
+			height:70px;
+		}
+		
+		.top-info{
+			background: url('/Public/ybt/image/center/ex-top.png');
+			background-size:100% 100%;
+			width:100%;
+			height:200px;
+			position: fixed;
+			top:0;
+		}
+		
+		.content{
+			height:100%;
+			width:100%;
+			padding-bottom: 0;
+			background: url('/Public/ybt/image/center/bg.png');
+		}
+		
+		.info-top .uinfo{
+			border-left:none;
+			padding:0;
+			margin:0;
+			margin-top: 10px;
+			opacity:0.8;
+		}
+		
+		.info-top .uphoto{
+			width:22%;
+		}
+	
+		.property{
+			width:90%;
+			height:auto;
+			margin:30px auto;
+		}
+
+		.detail-div{
+			background: url('/Public/ybt/image/center/fang1.png');
+			width:90%;
+			height:auto;
+			margin:220px auto 0;
+			padding:20px 30px;
+		}
+		
+		.btn{
+			background: url("/Public/ybt/image/center/exchange-btn.png") no-repeat;
+			background-size:100% 100%;
+			width:90%;
+			margin: 20px auto;
+			height:auto;
+		}
+		
+		.button{
+			border:none;
+		}
+		
+		.btn a{
+			height:100%!important;
+			color:#fff;
+			font-size: 16px;
+			height:53px!important;
+			line-height: 53px!important;
+		}
+		
+		.button-success{
+			background-color: transparent;
+		}
+		
+		.top-div{
+			width:100%;
+			height:25%;
+			position: relative;
+			float: left;
+		}
+		
+		.money-info{
+			width:100%;
+			height:72%;
+			float: left;
+			padding:10px 40px;
+		}
+		
+		.money-info .ipfs-title{
+			color:#D6D6D6;
+			font-size: 20px;
+		}
+		
+		.money-info .ipfs-num{
+			color:#D2D2D2;
+			font-size: 16px;
+			opacity: 0.8;
+		}
+		
+		.money-info .layui-input{
+			color:#fff;
+			background: transparent;
+			border:none;
+			border-bottom: 1px solid #fff;
+			font-size: 21px;
+			padding-bottom: 14px;
+			margin-top:20px;
+			margin-bottom:10px;
+		}
+		
+		.layui-input, .layui-textarea{
+			padding:0;
+		}
+		
+		#cancle{
+			position: absolute;
+			left:20px;
+			top:50%;
+			margin-top: -9px;
+			color:#fff;
+		}
+		
+		.border-line{
+			height:100%;
+			width:1px;
+			background: #fff;
+			display: inline-block;
+			float: left;
+		}
+		
+		.money{
+			font-size: 30px;
+		}
+		
+		.money-name{
+			font-size: 14px;
+			color:#D6D6D6;
+		}
+		
+		.detail-div .detail-title{
+			color:#D6D6D6;
+			width:30%;
+		}
+		
+		.detail-div table{
+			width:100%;
+			height:100%;
+		}
+		
+		.detail-div .input{
+			width:70%;
+			color:#fff;
+			background: transparent;
+			border:none;
+		}
+		
+		.detail-div .input select{
+			background: transparent;
+			border:none;
+			height:100%;
+			background-color: #12419c;
+		}
+		
+		.detail-div tr td{
+			line-height: 48px;
+			height:48px;
+			float: left;
+		}
+		
+		.detail-div .input input{
+			background: none;
+			border:none;
+			height:100%;
+		}
+		
+		input::placeholder{
+			color:#fff;
+		}
+		
+		.applyList{
+			height:100%;
+			color:#fff;
+			position: absolute;
+			right:1rem;
+			line-height: 50px;
+			opacity: 0.8;
+			font-size: 14px;
+		}
+		
+		.layui-form-radio{
+			margin:0 0 2px 0;
+			padding-right: 0;
+		}
+		
+		.coin_num{
+			border:1px solid #fff;
+			width:160px;
+			height:45px;
+			background: transparent;
+			color:#fff;
+			padding-left: 25px;
+			font-size: 30px;
+		}
+		
+		.money-icon{
+			position: absolute;
+			left:0;
+			top:0;
+			font-size: 30px;
+			color:#fff;
+			line-height: 48px;
+		}
+		
+		.warn{
+			color:#D6D6D6;
+			font-size: 13px;
+		}
+		p{
+			color:white;
+			font-size: 10.6px;
+		}
+	</style>
+</head>
+
+<body style="">
+
+<div class="page">
+
+	<div class="content" id="main_content">
+	<!-- 标题栏 -->
+		<form class="layui-form">
+			<div class="top-info">
+				<div class="top-div">
+					<a style="width: 100%;text-align: center;display: inline-block;line-height: 50px;font-size: 1rem; color:#FFF;">提现</a>
+				    <a id="cancle" href="javascript:history.back(-1)"><i class="icon icon-left"></i></a>
+				</div>
+				<div class="money-info">
+					<p class="ipfs-title">IPFS提现数量</p>
+					<input type="text" class="layui-input" id="amount" placeholder="请输入数量" oninput="num(this)">
+					<p class="ipfs-num">IPFS总数量：{$ipfs}fil</p>
+				</div>
+			</div>
+			<div class="detail-div">
+				<table>
+					<table>
+					<tr style="height:63px;line-height:63px">
+						<td class="detail-title" style="color:#D6D6D6;font-size:16px">提现金额:</td>
+						<td style="height:63px;line-height:63px;position: relative;">
+							<input type="text" disabled="true" name="coin_num" id="total" class="coin_num">
+							<span class="money-icon">￥</span>
+						</td>
+					</tr>
+					<tr>
+						<td class='warn'>注：详情可以到订单详情界面查看。</td>
+					</tr>
+					<tr>
+						<td class="detail-title">支付密码</td>
+						<td class="input">
+							<input type="password" placeholder="请输入支付密码" name="ejmm" id="ejmm">
+						</td>
+					</tr>
+				</table>
+            	<!--<p>确认后等待管理员确认并留意收款通知，如有疑问请联系邮箱：test@qq.com。</p>-->
+			</div>
+			
+			<div class="btn">
+				<a lay-submit class="button button-success" style="width: 100%;" onclick="check()">提交申请</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<script src="/Public/ybt/js/layui.js"></script>
+<script>
+	layui.use(["upload","form","layer"],function(){
+		var upload = layui.upload;
+		var form = layui.form;
+		var layer = layui.layer
+	});
+	
+	var is_set = {$is_set}
+	if (is_set == 0){
+		layer.confirm("系统检测您未设置收款码，请前往设置");
+	}
+
+	var rate = {:C("rate")};
+	var rate2 = {:C("rate2")};
+	var sxf = {:C("sxf")} / 100
+    function num(obj){
+    	if ($("#pay_type").val() != "usdt"){
+    		$("#total").val((obj.value * rate * (1 - sxf)).toFixed(2));
+    	}else{
+    		$("#total").val((obj.value * rate2  * (1 - sxf)).toFixed(2));
+    	}
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+    }
+    
+    function paytype(obj){
+    	var type = obj.value;
+    	$("#amount").val("");
+    	$("#total").val("0.00");
+    }
+    
+    function check(){
+    	var amount = $("#amount").val();
+    	if (amount == ''){
+    		layer.msg("请输入提现数量");
+    		return false;
+    	}
+    	if (amount.indexOf(".") != -1){
+    		layer.msg("请输入整数");
+    		return false;
+    	}
+    	if (amount < {:C("minw")}){
+    		layer.msg("提现的数量不得小于{:C('minw')}");
+    		return false;
+    	}
+    	var ejmm = $("#ejmm").val()
+    	if (ejmm == ''){
+    		layer.msg("请输入二级密码");
+    		return false;
+    	}
+    	var total = $("#total").val();
+    	layer.confirm("请确认需要提现"+amount+"个IPFS，实际获得"+total+"元。",function(){
+    		var data = new FormData();
+    		data.append("paytype",paytype);
+    		data.append("amount",$("#amount").val());
+    		data.append("ejmm",$("#ejmm").val());
+    		$.ajax({
+    			url:"/index/yuanqi/withdrawal_post",
+    			type: "POST",
+    			async: false,
+    			data: data,
+    			processData : false, // 使数据不做处理
+        		contentType : false,
+    			success: function(res){
+    				layer.closeAll();
+    				layer.msg(res.msg,{time:1500},function(){
+    					if(res.success == 1){
+    						window.location.reload();
+    					}
+    				});
+    			}
+    		})
+    		return false;
+    	})
+    }
+</script>
+
+</body>
+</html>

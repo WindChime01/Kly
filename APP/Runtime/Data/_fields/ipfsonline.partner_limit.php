@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'partner_limit', 2 => 'edittime', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'partner_limit' => 'int(11)', 'edittime' => 'int(11)', ), );?>

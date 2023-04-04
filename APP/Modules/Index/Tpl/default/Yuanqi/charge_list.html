@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+    <meta name="robots" content="noindex,nofollow">
+
+    <meta name="robots" content="noarchive">
+
+    <!-- 屏蔽-->
+
+    <title>充值记录</title>
+
+    <meta name="keywords" content=" ">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta content="IE=9; IE=EDGE" http-equiv="X-UA-Compatible">
+
+    <link rel="stylesheet" href="/Public/ybt/css/sm.css">
+
+    <script type="text/javascript" src="/Public/ybt/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+
+    <link rel="stylesheet" href="/Public/ybt/css/sm-extend.css">
+
+    <link rel="stylesheet" href="/Public/ybt/css/iconfont.css">
+
+    <!--自定义-->
+
+    <link rel="stylesheet" href="/Public/ybt/css/main.css">
+
+    <link rel="stylesheet" href="/Public/ybt/css/order.css">
+
+    <script src="/Public/ybt/js/leftTime.min.js"></script>
+
+
+
+
+
+</head>
+<style>
+    .list-block{
+        font-size: 12px;
+    }
+    .button.button-big{
+        font-size: 14px;
+    }
+    .shade{
+    	background: rgba(0,0,0,0.2);
+    	display: none;
+    	position: absolute;
+    	width: 100%;
+    	height: 900px;
+    	z-index:500;
+    }
+    .pullDown{text-align: center;padding: 10px;position: absolute;top: -35px;width: 100%}
+    .pullDown img{width: 16px;height: 16px;display: inline;}
+</style>
+
+<body style="">
+
+<div class="shade"></div>
+
+<!-- <div class="page">-->
+
+
+
+<!-- 标题栏 -->
+
+<header class="bar bar-nav">
+
+
+
+    <a style="position: absolute;z-index: 19;width: 94%;text-align: center;display: inline-block;line-height: 2rem;font-size: 0.8rem; color:#FFF;">充值记录</a>    <div class="logo">
+
+    <a id="cancle" href="javascript:history.go(-1)"><i class="icon icon-left"></i></a>    </div>
+
+    <a class="icon pull-right open-panel"></a></header>
+
+<div class="content" id="main_content" style="margin-bottom: 0">
+
+    <!--<div style="line-height: 28px;margin-top: 5px;">-->
+    <!--    <span style="color: #808080; font-size:14px;margin-left: 20px">转账</span>-->
+    <!--</div>-->
+
+    <!--<hr color="#808080" size="1">-->
+	<div class="list-block" id="wrapper">
+        <div class="pullDown"></div>
+        <ul class="list-container" id="list_content">
+            <if condition="!empty($list)">
+            <volist name="list" id="vo">
+            <li>
+                <div class="item-content">
+                    <div class="item-media"></div>
+                    <div class="item-inner">
+                        <div class="item-input">
+                        	<div style="padding:10px 0 0"><span style="font-size:18px">{$vo.charge|floatval}</span> <span style="font-size:11px">元气值</span><span style="float:right;line-height:18px">{$vo.status|charge_status}</span></div>
+                        	<div style="padding:8px 0"><span style="font-size:11px;color:#666">已充值：<if condition="$vo.type eq 'usdt'">{$vo.total|number_format=###,2} USDT<else/>￥{$vo.total|number_format=###,2}</if></span><span style="font-size:11px;float:right;color:#666">{$vo.addtime|date="Y-m-d H:i:s",###}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            </volist>
+            <else/>
+
+                <div id="empty" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%,-50%);text-align: center;">
+                    <img src="/Public/ybt/image/mmlist.png" style="width: 195px"><br>
+                    <span style="font-size: 13px">暂无数据</span>
+                </div>
+            </if>
+
+        </ul>
+
+    </div>
+    <!--表单结束-->
+
+</div>
+
+
+<script type="text/javascript" src="/Public/ybt/js/layer/layer.js"></script>
+<script type="text/javascript" src="/Public/ybt/js/template-native.js"></script>
+<script type="text/html" id="demo">
+    <!-- 下拉内容 -->
+    <%for(var a=0;a < info.length; a++){%>
+    <li>
+        <div class="item-content">
+            <div class="item-media"></div>
+            <div class="item-inner">
+                <div class="item-input">
+                	<div style="padding:10px 0 0"><span style="font-size:18px"><%=info[a].charge%></span> <span style="font-size:11px">元气值</span><span style="float:right;line-height:18px"><%=info[a].status%></span></div>
+                	<div style="padding:8px 0"><span style="font-size:11px;color:#666">已充值：<%=info[a].total%></span><span style="font-size:11px;float:right;color:#666"><%=info[a].addtime%></span></div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <% }%>
+</script>
+
+    
+    <script type="text/javascript">
+        var p = 1;
+        var lock = 0;
+
+        $(function(){
+            
+            template.helper('getTime',function(timer){
+                return getLocalTime(timer);
+            });
+
+            if($(window).width()>400){
+                $("#search").css({'width':'80px','height':'30px'});
+            }
+
+            var WinHei = $("#main_content").height();       //633
+            $("#main_content").scroll(function(){
+                var ulHei  = $("#list_content").height()+39;     //646
+                var chaTop = $("#main_content").scrollTop(); //获得滚动的距离
+
+                var lastHei = $('li[kid]:last')[0].offsetTop;
+                if ((lastHei < WinHei + chaTop) && lock == 0) {
+                    addLi(p);
+                }
+            });
+    
+        function addLi(page){
+            lock = 1;
+            p = page + 1;
+            
+            var url = "{:U(GROUP_NAME.'/Yuanqi/charge_list')}";
+
+            $.post(url,{'page':p},function(ret){
+                if(!ret['info']){
+                    var html = '<div class="ddl" style="padding:10px 0 20px;width:100%;height:auto;text-align:center"><small>到底啦</small></div>';
+                    $('#list_content').append(html);
+                    return;
+                }
+                var html = template('demo',ret);        
+                $("#list_content").append(html);
+                lock = 0;
+            },'json');
+            
+        }
+
+        });
+
+
+        var _element = document.getElementById('wrapper'),
+        _refreshText = document.querySelector('.pullDown'),
+        _startPos = 20,
+        _transitionHeight = 0;
+        _element.addEventListener('touchstart', function(e) {
+            if ($('#main_content').scrollTop() != 0) return;
+            //console.log('初始位置：', e.touches[0].pageY);
+            _startPos = e.touches[0].pageY;
+            _element.style.position = 'relative';
+            _element.style.transition = 'transform 0s';    
+        }, false);
+        _element.addEventListener('touchmove', function(e) {
+            if ($('#main_content').scrollTop() != 0) return;
+            //console.log('当前位置：', e.touches[0].pageY);
+            _transitionHeight = e.touches[0].pageY - _startPos;
+            if (_transitionHeight > 0 && _transitionHeight < 45) {
+                _refreshText.innerHTML = "<img src='/Public/ybt/css/arrow.png'/>下拉刷新";
+                _element.style.transform = 'translateY('+_transitionHeight+'px)';
+                if (_transitionHeight > 40) {
+                    _refreshText.innerText = '释放刷新';
+                }
+            }
+        }, false);
+        _element.addEventListener('touchend', function(e) {
+            if ($('#main_content').scrollTop() != 0) return;
+            if (_transitionHeight > 40 ) {
+                _element.style.transition = 'transform 0.5s ease 1s';
+                _element.style.transform = 'translateY(0px)';
+                _refreshText.innerHTML = "<img src='/Public/ybt/image/loading.gif' style='margin-right: 10px;width:20px;height:20px;'/>更新中...";
+                
+                var url = "{:U(GROUP_NAME.'/Yuanqi/charge_list')}";
+                $.get(url,{page:1},function(res){
+                    if (res.info == null) {
+                        _refreshText.innerHTML = "刷新失败";
+                        return;
+                    }
+                    setTimeout(function(){
+                        _refreshText.innerHTML = "刷新成功";
+                        var html = template('demo',res);     
+                        $("#list_content").html(html);
+                        clearTimeout();
+                    },500);
+                });
+            }else{
+                _element.style.transition = 'transform 0.5s ease 1s';
+                _element.style.transform = 'translateY(0px)';
+            }
+        }, false);
+    </script>
+
+</body>
+</html>

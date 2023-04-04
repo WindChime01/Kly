@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>html2canvas example</title>
+    <script src="/Public/ybt/js/htmlcanvas.js"></script>
+    <script type="text/javascript">
+	function takeScreenshot() {
+		console.log('test');
+	    // html2canvas(document.getElementById('view'), {
+	    //     onrendered: function(canvas) {
+	    //         document.body.appendChild(canvas);
+	    //     },
+	    //   // width: 300,
+	    //   // height: 300
+	    // });
+	    html2canvas(document.getElementById('view')).then(function(canvas) {
+			console.log(canvas);
+		    document.body.appendChild(canvas);
+		});
+	}
+	</script>
+</head>
+
+<body>
+    <div id="view" style="background:url('/Public/ybt/image/bg_tgm@2x.png') no-repeat center top;background-size: 100% 100%;height:812px;width:100%">
+        <input type="button" value="截图" onclick="takeScreenshot()">
+    </div>
+
+</body>
+
+</html>

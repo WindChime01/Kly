@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'level', 2 => 'rate', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'level' => 'int(11)', 'rate' => 'decimal(4,1)', ), );?>

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- saved from url=(0049)http://porter.weiyinstudio.com/Home/Myuser/jihuo2/zt/0/ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+	<meta name="robots" content="noindex,nofollow">
+
+	<meta name="robots" content="noarchive">
+
+	<!-- 屏蔽-->
+
+	<title>我的团队</title>
+
+	<meta name="keywords" content=" ">
+
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<meta content="IE=9; IE=EDGE" http-equiv="X-UA-Compatible">
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm.css">
+
+	<script src="/Public/ybt/js/jquery-1.10.2.min.js"></script>
+
+
+
+	<link rel="stylesheet" href="/Public/ybt/css/sm-extend.css">
+
+
+
+	<link rel="stylesheet" href="/Public/ybt/css/iconfont.css">
+
+	<!--自定义-->
+
+	<link rel="stylesheet" href="/Public/ybt/css/main.css">
+
+	<link rel="stylesheet" href="/Public/ybt/css/order.css">
+	<style>
+	.receive{
+		color: white;
+		margin:0 0 1.5rem 0.5rem;
+	}
+	.Bar { position: relative; width: 100%;
+		/* 宽度 */ 
+		background: #DBD9D9;
+		border-radius: 10px;}
+
+	.Bar div{ display: block; position: relative;
+		background:#3987F3;/* 进度条背景颜色 */ color: #333333;
+		height: 6px; /* 高度 */ line-height: 6px;
+		border-radius: 6px;
+		/* 必须和高度一致，文本才能垂直居中 */ }
+	.Bar div span{ position: absolute; width: 100%;
+		/* 宽度 */ text-align: center; font-weight: bold; }
+	hr{height:1px;border:none;border-top:1px solid #fff;width:1rem}
+	.line_m{text-decoration:line-through;width:1rem}
+	table tr td {line-height: 2rem;}
+	.logo{position: absolute;top:0;left:0}
+	</style>
+</head>
+
+<body style="background: url('/Public/ybt/image/bg_index@2x.png') no-repeat top center; background-size:100%;">
+
+
+
+<!--    <div class="page">-->
+
+
+
+<!-- 标题栏 -->
+
+<header class="bar bar-nav" style="background:url('/Public/ybt/image/header@2x.png')  no-repeat top center; background-size:cover;min-height:230px;overflow:hidden;position:relative">
+
+
+
+	<a style="position: none;z-index: 19;width: 100%;text-align: center;display: inline-block;line-height: 50px;font-size: 0.85rem; color:#FFF;">我的团队</a>
+	<div class="logo">
+		<a  href="/index/index/property"><i class="icon icon-left"></i></a>
+	</div>
+	<div style="position:absolute;right:0;top:0;width:50px;height:55px"><a href="{:U('Account/mysl')}" style="position: absolute;z-index: 19;width: 100%;text-align: right;display: inline-block;line-height: 50px;font-size: 0.6rem; color:#D6D6D6;right: 40%">我的算力</a></div>
+	<div style="width:90%;margin:auto;">
+		<div style="width:40%;margin:auto;color:#D6D6D6">
+			<div style="width:25%;float:left;text-align:right;border-top:1px solid #fff;margin-top:0.75rem"></div>
+			<div style="width:50%;float:left;text-align:center;height:1.5rem;line-height:1.5rem;font-size:0.85rem">总人数</div>
+			<div style="width:25%;float:left;text-align:left;border-top:1px solid #fff;margin-top:0.75rem"></div>
+		</div>
+		<div style="width:100%;float:left;text-align:center;margin-bottom:1rem">
+			<p style="font-size:1.6rem;line-height:2rem">{$total_nums}</p>
+		</div>
+	</div>
+	<div style="position:none;margin:0 1rem;text-align:center;margin-top:1rem">
+		<div style="width:49%;float:left;border-right:1px solid #fff">
+			<p style="font-size:1.2rem;line-height:2rem"> {$zt_nums} </p>
+			<p style="font-size:0.6rem;line-height:1.5rem">直推人数</p>
+		</div>
+		<div style="width:49%;float:left;border-left:1px solid #fff">
+			<p style="font-size:1.2rem;line-height:2rem"> {$jt_nums} </p>
+			<p style="font-size:0.6rem;line-height:1.5rem">间推人数</p>
+		</div>
+	</div>
+	<a class="icon pull-right open-panel"></a>
+</header>
+
+
+<!--<nav class="foot-bar">-->
+
+<!--	<div class="foot-menu"><a href="{:U('Index/Emoney/shouye')}">-->
+
+<!--		<i class="iconfont icon-shouye"></i><span>首页</span></a></div>-->
+
+<!--	<div class="foot-menu"><a href="{:U('Index/Shop/orderlist')}">-->
+
+<!--		<i class="iconfont icon-wxbmingxingdianpu"></i><span>我的矿机</span></a></div>-->
+
+<!--	<div class="foot-menu"><a href="{:U('Index/Account/myAccount')}">-->
+
+<!--		<i class="iconfont icon-gouwuche"></i><span>我的团队</span></a></div>-->
+
+<!--	<div class="foot-menu"><a href="/">-->
+
+<!--		<i class="iconfont icon-geren"></i><span>会员中心</span></a></div>-->
+
+<!--</nav>-->
+
+
+<div class="" style="width:50%;margin:0.5rem 25%;color:#fff;height:2rem;text-align:center;border-radius:10px;overflow:hidden;padding:0">
+
+		<!--<a href="{:U('Index/Shop/orderlist')}" class="active button">正常矿机({$kjnum})</a>-->
+
+		<!--<a href="{:U('Index/Shop/daoqi')}" class=" button">到期矿机</a>-->
+
+		<a href="{:U('Index/account/myAccount')}" class="" style="height:100%;line-height:1.8rem;font-size:0.7rem;color:#fff;display:block;width:50%;float:left;border:2px solid #1748A5;border-radius:10px 0 0 10px">直推</a>
+
+		<a href="{:U('Index/account/myAccount1')}" class="" style="background:rgba(23, 72, 165, 1);height:100%;line-height:1.8rem;font-size:0.7rem;color:#fff;display:block;width:50%;float:left;border:2px solid #1748A5;border-radius:0 10px 10px 0">间推</a>
+	</div>
+
+
+<script type="text/javascript">
+
+    $(function() {
+
+        $("#cancle").click(function() {
+
+            $.router.back();
+
+        });
+
+    });
+
+</script>
+
+
+
+<div class="content" id="main_content" style="position:none;margin-top:240px;margin-bottom:10px">
+
+
+
+
+
+	
+
+
+
+	<div class="tabs">
+
+
+		<!--class card-->
+		<div style="width:90%;margin: 1rem auto;min-height:50px;line-height;overflow:hidden;linear-gradient(left,#2B60C6,#1748A5);background-image: -webkit-linear-gradient(left,#2B60C6,#1748A5);color:#fff;border-radius:5px;padding:10px">
+			
+			<table style="width:100%">
+                <tr style="color:#D6D6D6;font-size:0.75rem;font-weight:normal;text-align:center">
+                    <!--<th style="width: 12%">序号</th>-->
+<!--                    <th style="width: 16%">姓名</th>-->
+                    <td style="width: 40%">用户</td>
+                    <td style="width: 30%">等级</td>
+                    <td style="width: 30%">团队人数</td>
+                    <!--<th>最近登录</th>-->
+                </tr>
+                <foreach name="list" item="v" key="key">
+                <tr  style="border-width: 0;color:#fff;font-size:0.7rem">
+
+                    <!--<td align="center" style="font-style: italic;font-size: 0.7rem">{$key+1}</td>-->
+
+<!--                    <td align="center" style="color: red;">{$v.truename}</td>-->
+
+                    <td align="center">{$v.username}</td>
+
+                    <td align="center">{$v.level_name}</td>
+                    <td align="center">
+                        {$v.nums}
+                    </td>
+
+                    <!--<td align="center" style="color: #f1c232">{$v.logintime|friend_date=###}</td>-->
+
+                </tr>
+
+                </foreach>
+            </table>
+            
+		</div>
+
+	</div>
+
+	<div style="text-align: center;color:#808080;font-size:12px">没有了</div>
+
+<br>
+</div>
+</body></html>

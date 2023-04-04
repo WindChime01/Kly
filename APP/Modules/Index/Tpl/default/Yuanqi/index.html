@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+    <meta name="robots" content="noindex,nofollow">
+
+    <meta name="robots" content="noarchive">
+
+    <!-- 屏蔽-->
+
+    <title>星际·元气值</title>
+
+    <meta name="keywords" content=" ">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta content="IE=9; IE=EDGE" http-equiv="X-UA-Compatible">
+
+    <link rel="stylesheet" href="/Public/ybt/css/sm.css">
+
+    <script src="/Public/ybt/js/jquery-1.10.2.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="/Public/ybt/css/sm-extend.css">
+
+
+
+    <link rel="stylesheet" href="/Public/ybt/css/iconfont.css">
+
+    <!--自定义-->
+
+    <link rel="stylesheet" href="/Public/ybt/css/main.css">
+
+    <link rel="stylesheet" href="/Public/ybt/css/order.css">
+
+    <script src="/Public/ybt/js/leftTime.min.js"></script>
+
+
+    <style>
+        .info-top .uphoto img{
+			width:70px;
+			height:70px;
+		}
+		
+		.top-info{
+			background: url('/Public/ybt/image/center/fang2.png');
+			width:100%;
+			height:200px;
+			position: relative;
+		}
+		
+		.content{
+			height:100%;
+			width:100%;
+			padding-bottom: 3rem;
+			background: url('/Public/ybt/image/center/bg.png');
+		}
+		
+		.info-top .uinfo{
+			border-left:none;
+			padding:0;
+			margin:0;
+			margin-top: 10px;
+			opacity:0.8;
+		}
+		
+		.info-top .uphoto{
+			width:22%;
+		}
+	
+		.property{
+			width:90%;
+			height:auto;
+			margin:30px auto;
+		}
+
+		.detail-div{
+			background: url('/Public/ybt/image/center/fang1.png');
+			width:90%;
+			height:260px;
+			margin:30px auto;
+			padding:35px 30px;
+		}
+		
+		.btn{
+			background: url("/Public/ybt/image/center/btn.png");
+			width:90%;
+			margin: 20px auto;
+			height:auto;
+		}
+		
+		.btn a{
+			height:100%!important;
+			color:#fff;
+			font-size: 16px;
+			height:53px!important;
+			line-height: 53px!important;
+		}
+		
+		.button-success{
+			background-color: transparent;
+		}
+		
+		.top-div{
+			width:100%;
+			height:25%;
+			position: relative;
+			float: left;
+		}
+		
+		.money-info{
+			width:100%;
+			height:40%;
+			float: left;
+			margin-top: 20px;
+		}
+		
+		#cancle{
+			position: absolute;
+			left:20px;
+			top:50%;
+			margin-top: -9px;
+			color:#fff;
+		}
+		
+		.money-info ul{
+			width:100%;
+			height:100%;
+		}
+		
+		.money-info ul li{
+			width:49.5%;
+			text-align: center;
+			color:#fff;
+			height:100%;
+			display: inline-block;
+			float: left;
+		}
+		
+		.money-info ul li p{
+			margin:10px auto;
+		}
+		
+		.border-line{
+			height:100%;
+			width:1px;
+			background: #fff;
+			display: inline-block;
+			float: left;
+		}
+		
+		.money{
+			font-size: 30px;
+		}
+		
+		.money-name{
+			font-size: 14px;
+			color:#D6D6D6;
+		}
+		
+		.detail-div .detail-title{
+			color:#D6D6D6;
+			width:30%;
+		}
+		
+		.detail-div table{
+			width:100%;
+			height:100%;
+		}
+		
+		.detail-div .input{
+			width:70%;
+			color:#fff;
+			background: transparent;
+			border:none;
+		}
+		
+		.detail-div .input select{
+			background: transparent;
+			border:none;
+			height:100%;
+			background-color: #12419c;
+		}
+		
+		.detail-div tr td{
+			line-height: 48px;
+			height:48px;
+			float: left;
+		}
+		
+		.detail-div .input input{
+			background: none;
+			border:none;
+			height:100%;
+		}
+		
+		input::placeholder{
+			color:#fff;
+		}
+    </style>
+
+
+</head>
+
+<body style="">
+
+
+
+<!-- <div class="page">-->
+
+
+
+<!-- 标题栏 -->
+
+<div class="page">
+
+	<nav class="foot-bar">
+
+		<div class="foot-menu"><a href="{:U('Index/Emoney/shouye')}">
+
+			<i class="iconfont icon-shouye"></i><span>首页</span></a></div>
+
+		<div class="foot-menu"><a href="{:U('Index/Shop/orderlist')}">
+
+			<i class="iconfont icon-wxbmingxingdianpu"></i><span>我的矿机</span></a></div>
+
+		<div class="foot-menu"><a href="{:U('Index/Account/myAccount')}">
+
+			<i class="iconfont icon-gouwuche"></i><span>我的团队</span></a></div>
+
+		<div class="foot-menu"><a href="/">
+
+			<i class="iconfont icon-geren"></i><span>会员中心</span></a></div>
+
+	</nav>
+
+	<div class="content" id="main_content">
+	<!-- 标题栏 -->
+	<div class="top-info">
+		<div class="top-div">
+			<a style="width: 100%;text-align: center;display: inline-block;line-height: 50px;font-size: 1rem; color:#FFF;">我的矿机</a>
+		    <a id="cancle" href="javascript:history.back(-1)"><i class="icon icon-left"></i></a>
+		</div>
+		<div class="money-info">
+			<ul>
+				<li>
+					<p class="money">32000.00</p>
+					<p class="money-name">星际·元气值</p>
+				</li>
+				<div class="border-line"></div>
+				<li>
+					<p class="money">200.00</p>
+					<p class="money-name">IPFS</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="detail-div">
+		<table>
+			<tr>
+				<td class="detail-title">转赠类型</td>
+				<td class="input">
+					<select>
+						<option>星际·元气值</option>
+						<option>星际·元气值2</option>
+					</select>
+				</td>
+			</tr>
+			<tr >
+				<td class="detail-title">账  号</td>
+				<td class="input">
+					<input type="text" placeholder="请填写或赠方账号" name="account">
+				</td>
+			</tr>
+			<tr >
+				<td class="detail-title">转赠数量</td>
+				<td class="input">
+					<input type="text" placeholder="请输入转赠数量" name="account">
+				</td>
+			</tr>
+			<tr >
+				<td class="detail-title">支付密码</td>
+				<td class="input">
+					<input type="text" placeholder="请输入支付密码" name="account">
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="btn">
+		<a href="{:U('Index/Index/wallet')}" class="button button-success" style="width: 100%;">确&nbsp;&nbsp;&nbsp;定</a>
+	</div>
+
+
+
+	</div>
+
+</div>
+</div>
+
+<script type="text/html" id="demo">
+    <%for(var i=0;i < info.length; i++){%>
+    <li>
+        <div style="width: 200px">
+            <p class="operation"><%=info[i].desc%></p>
+            
+            <span class="operation_time"><%=getTime(info[i].addtime)%></span>
+        </div>
+        <%if(info[i].adds == 0){%>
+            <span class="operation_num">-<%=info[i].reduce%></span>
+        <%}else{%>
+            <span class="operation_num">+<%=info[i].adds%></span>
+        <%}%>
+    </li>
+    <%}%>
+
+</script>
+
+
+<script type="text/javascript" src="/Public/ybt/js/template-native.js"></script>
+<script type="text/javascript">
+    $(function(){
+        template.helper('getTime',function(timer){
+            return getLocalTime(timer);
+        });
+    });
+
+    $('#main_content').on("scroll", function () {
+        var no_more = document.getElementById('no-more');
+        if (no_more.style.display != 'block') {
+            $("#load").show();
+        }
+        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            var url = "{:U(GROUP_NAME.'/Yuanqi/index')}"
+            var len = $('#content-detail-list ul li').length;
+            len = len/10;
+            if (len%1 != 0) {
+                $('#load').hide();
+                $('#no-more').show();
+                return;
+            }
+            var page = len+1;
+            var select = $("option:selected");
+            if (select.index() == 0) {
+                $.post(url,{page:page},function(res){
+                    if(res.info==null){
+                        $('#load').hide();
+                        $('#no-more').show();
+                        return;
+                    }
+                    var html = template('demo',res);
+                    $('#detail-list').append(html);
+                });
+            }else{
+                $.post(url,{page:page,time:select.val()},function(res){
+                    if(res.info==null){
+                        $('#load').hide();
+                        $('#no-more').show();
+                        return;
+                    }
+                    var html = template('demo',res);
+                    $('#detail-list').append(html);
+                }); 
+            }
+        }
+    });
+
+    function select(){
+        var select = $("option:selected");
+        if (select.index() == 0) {
+            $('.select-time').css('color','#ccc');
+        }else{
+            $('.select-time').css('color','#000');
+            $('option:first-child').css('color','#ccc');
+            $('#no-more').hide();
+            $("#no-operation").hide();
+
+            if (select.val() == 15) {
+                $('#no-more').text("暂无更多记录");
+            }
+            if (select.val() == 30) {
+                $('#no-more').text("暂无更多记录");
+            }
+            if (select.val() == 90) {
+                $('#no-more').text("暂无更多记录");
+            }
+
+            var url = "{:U(GROUP_NAME.'/Yuanqi/index')}"
+            $.post(url,{time:select.val()},function(res){
+                if (res.info == null) {
+                    $('#no-more').show();
+                    return;
+                }
+                var html = template('demo',res);
+                $('#detail-list').html(html);    
+            });
+        }
+
+    }
+
+    function copy(){
+        document.execCommand("copy"); //执行浏览器复制命令                
+    }
+
+    function execCopy(event,ptb_address){
+        event.preventDefault();
+        if (event.clipboardData) {
+            event.clipboardData.setData("text/plain", ptb_address.textContent);
+            alert("复制成功："+event.clipboardData.getData("text"));
+        }
+
+    }
+</script>
+
+</body>
+</html>

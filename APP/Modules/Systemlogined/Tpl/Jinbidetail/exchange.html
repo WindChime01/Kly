@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/layui/css/layui.css">
+	<script src="/Public/ybt/js/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+	<script src="__PUBLIC__/layui/layui.all.js"></script>
+</head>
+<body>
+	
+</body>
+</html>
+<div class="layui-tab">
+    <div style="text-align:center;width:80%;margin:0 auto" class="infotable">
+		<table class="layui-table">
+			<colgroup>
+				<col width="100">
+				<col width="200">
+			</colgroup>
+			<tr>
+				<td style="color:blue">提现地址</td>
+				<td>{$info.address}</td>
+			</tr> 
+			<tr>
+				<td>申请时间</td>
+				<td>{$info.addtime|date="Y-m-d H:i:s",###}</td>
+			</tr> 
+			<tr>
+				<td>申请数量</td>
+				<td>{$info.ipfs|floatval}</td>
+			</tr>
+			<tr>
+				<td>需转换数量</td>
+				<td><span style="color:red">{$info.total|floatval}</span></td>
+			</tr>
+			<tr>
+				<td>状态</td>
+				<td>{$info.status|exchange_status}</td>
+			</tr>
+			<if condition="$info['status'] eq 0">
+			<tr>
+				<td>转换备注</td>
+				<td><textarea placeholder="请输入提现通过或拒绝的备注说明" name="remark" class="layui-textarea" style="width:100%"></textarea></td>
+			</tr>
+			
+			<tr>
+				<td>截图</td>
+				<td><img src="{$info.image}" style="width:100%" id="wechatshow"> <button class="layui-btn" id="wechatimg">上传截图</button></td>
+			</tr>
+			<else/>
+			<tr>
+				<td>转换备注</td>
+				<td>{$info.remark}</td>
+			</tr>
+			<if condition="$info['image'] neq ''">
+			<tr>
+				<td>转换图片</td>
+				<td><img src="{$info.image}" style="width:100%" id="wechatshow"></td>
+			</tr>
+			</if>
+			</if>
+			<if condition="$info['status'] eq 4">
+			<tr>
+				<td>申诉内容</td>
+				<td>{$info.shensu}</td>
+			</tr>
+			</if>
+			</tbody>
+		</table>
+	</div>
+	<div style="text-align:center" class="btns"><button type="button" class="layui-btn" onclick="check()">确认转换</button> <button type="button" class="layui-btn layui-btn-danger" onclick="reject()">拒绝转换</button></div>
+  </div>
+</div>
+<script>
+	var id = {$info.id};
+	if ({$info.status} != 0 && {$info.status} != 4){
+		$(".btns").remove();
+	}
+	function check(){
+		var remark = $("[name=remark]").val();
+		if (remark == ""){
+			layer.msg("请输入备注信息");
+			return false;
+		}
+		var image = $("#wechatshow").attr("src");
+		if (image == ""){
+			layer.msg("请上传截图");
+			return false;
+		}
+		layer.confirm("请确认收款信息有效且已成功转账。",function(){
+			$.ajax({
+				url: "/systemlogined/jinbidetail/adopt_exchange",
+				type: "POST",
+				data: {isa:1,id:id,remark:remark},
+				success: function(res){
+					layer.closeAll();
+					layer.msg(res.info,{time:1500},function(){
+						if (res.status == 1){
+							window.parent.location.reload();
+						}
+					})
+				}
+			})
+		})
+	}
+	
+	function reject(){
+		var remark = $("[name=remark]").val();
+		if (remark == ""){
+			layer.msg("请输入备注信息");
+			return false;
+		}
+		layer.confirm("请确认收款信息无效或存在违法信息，拒绝转账。",function(){
+			$.ajax({
+				url: "/systemlogined/jinbidetail/adopt_exchange",
+				type: "POST",
+				data: {isa:0,id:id,remark:remark},
+				success: function(res){
+					layer.closeAll();
+					layer.msg(res.info,{time:1500},function(){
+						if (res.status == 1){
+							window.parent.location.reload();
+						}
+					})
+				}
+			})
+		})
+	}
+	
+	var upload = layui.upload;
+	var i;
+	upload.render({
+		elem: '#wechatimg'
+		,url: '/systemlogined/jinbidetail/upload_fkm2'
+		,data: {id:id}
+		,before: function(){
+			i = layer.msg("上传中……",{time:0});
+		}
+		,done: function(res, index, upload){ //上传后的回调
+			layer.close(i);
+			$("#wechatshow").attr("src",res.path);
+		} 
+	})
+</script>

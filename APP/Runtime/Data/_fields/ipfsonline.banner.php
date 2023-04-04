@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'path', 2 => 'sort', '_autoinc' => false, '_pk' => 'id', '_type' => array ( 'id' => 'int(10)', 'path' => 'varchar(100)', 'sort' => 'int(10)', ), );?>
