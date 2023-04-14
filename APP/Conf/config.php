@@ -12,10 +12,10 @@ return array(
 	 /* 数据库设置 */
     'DB_TYPE'               =>  'mysql',        // 数据库类型
     'DB_HOST'               =>  '127.0.0.1',    // 服务器地址
-    'DB_NAME'               =>  'ipfs_weiyin',   // 数据库名
-    'DB_USER'               =>  'ipfs_weiyin',         // 用户名
-    'DB_PWD'                =>  'YriaEB7cHbk3RJpS',             // 密码
-    'DB_PORT'               =>  '3306',         // 端口
+    'DB_NAME'               =>  'ipfs',   // 数据库名
+    'DB_USER'               =>  'root',         // 用户名
+    'DB_PWD'                =>  'root',             // 密码
+    'DB_PORT'               =>  '3316',         // 端口
     'DB_PREFIX'             =>  'ds_',          // 数据库表前缀
     'SESSION_TYPE'          =>  'Db',           //将session写入数据库
     

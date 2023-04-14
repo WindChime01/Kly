@@ -88,4 +88,28 @@ class TimingAction extends Action{
             unset($user);
             return $arr;
         }
+        public function basecode(){
+        $url = 'https://www.baidu.com/';
+        //打开缓冲区
+        ob_start();
+        //生成二维码图片
+        include_once "plugins/phpqrcode/phpqrcode.php";
+        $returnData = QRcode::pngString($url,false, "H", 8);
+        //这里就是把生成的图片流从缓冲区保存到内存对象上，使用base64_encode变成编码字符串，通过json返回给页面。
+        $imageString = base64_encode(ob_get_contents());
+        //关闭缓冲区
+        ob_end_clean();
+        return $imageString;
+        }
+        public function qrcode(){
+            header('content-type:text/html;charset=utf-8');
+            $data = 'https://www.baidu.com/';
+            $level = 'Q';// 纠错级别：L、M、Q、H
+            $size = 10;//元素尺寸
+            include_once "plugins/phpqrcode/phpqrcode.php";
+            QRcode::png($data,false,$level,$size,true);
+        }
+        public function logoqrcode(){
+
+        }
 }
