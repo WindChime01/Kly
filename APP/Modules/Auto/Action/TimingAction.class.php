@@ -1,9 +1,12 @@
 <?php
 
 class TimingAction extends Action{
+    //钱包流水明细
+    public function excel(){
+        dump($_ENV);
+    }
     //每日雇佣收益
-   
-        public function income(){ 
+    public function income(){ 
         // dump(1);die;
         $income_log = M('kly_income_log')->order('id desc')->find();
         $time = strtotime(date('Ymd'));    // 今天零点时间戳

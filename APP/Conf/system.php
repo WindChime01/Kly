@@ -73,7 +73,7 @@ return array (
   'sms_type' => '1',
   'everyday_rose' => 0.01,
   'everyday_drop' => 0,
-  'everyday_last_time' => 1681374255,
+  'everyday_last_time' => 1682298822,
   'recharge_type' => 1,
   'adurl' => '',
   'recharge_examine_type' => 2,

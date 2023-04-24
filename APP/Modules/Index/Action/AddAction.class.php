@@ -1,6 +1,44 @@
 <?php
 Class AddAction extends CommonAction{
-    
+    //签到
+    public function sign_in(){
+        $userinfor = M('kly_sign_log')->where(['user_id'=>session('mid')])->order('sign_time desc')->find();      //最近签到的时间
+        $nowtime = strtotime(date('Ymd'));  //今日零点时间戳
+        if($userinfor['sign_time']>$nowtime){
+            $this->ajaxReturn(array("msg"=>"今日已签到,已连续签到".$userinfor['sign_number'].'天',"success"=>-1));
+        }
+        $yesterday_time = strtotime(date('Ymd',time()-86399));  //昨日零点时间戳
+        if($userinfor['sign_time']>$yesterday_time){
+            $sign_number = $userinfor['sign_number'] + 1;
+        }else{
+            $sign_number = 1;
+        }
+        $data = [
+            'user_id'=>session("mid"),
+            'sign_time'=>time(),
+            'sign_number'=>$sign_number,
+        ];
+        if($sign_number<4){
+            $reward = M('kly_sign_reward')->where(['id'=>1])->getField('reward');
+        }else if($sign_number<7){
+            $reward = M('kly_sign_reward')->where(['id'=>2])->getField('reward');
+        }else{
+            $reward = M('kly_sign_reward')->where(['id'=>3])->getField('reward');
+        }
+        $reward_log = [
+            'user_id'=>session("mid"),
+            'reward'=>$reward,
+            'addtime'=>time(),
+            'sign_number'=>$sign_number,
+        ];
+        $reward_add = M('kly_sign_reward_log')->add($reward_log);
+        $add =  M('kly_sign_log')->add($data);
+        if($add and $reward_add){
+        $this->ajaxReturn(array("msg"=>"签到成功,已连续签到".$sign_number.'天,获得'.$reward.'积分',"success"=>1));
+       }else{
+        $this->ajaxReturn(array("msg"=>"签到失败,请联系客服查询情况","success"=>1));
+       }
+    }
     //雇佣
     public function test(){                     
         $data =I('post.');

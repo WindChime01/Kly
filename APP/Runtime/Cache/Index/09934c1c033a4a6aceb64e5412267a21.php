@@ -251,7 +251,7 @@
 
 				<p style="font-size:14px;color:#003333">ID： <?php echo ($minfo["id"]); ?></p>
 				<p style="color:#333333;">账号：<?php echo ($minfo["username"]); ?></p>
-
+				<button lay-submit lay-filter="s" style="color:#333333;font-size: 24px;width: 18%;;position: absolute;margin-left: 55%;margin-top: -10%;border-radius: 30%;">签到</button>
 				<!--<p>直推人数：<?php echo ($ztnum); ?></p>-->
 
 				<!--<p>团队人数：<?php echo ($tdnum); ?></p>-->
@@ -393,6 +393,7 @@
 
 </div>
 <script type="text/javascript" src="/Public/ybt/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/Public/ybt/js/layui.js"></script>
 <script type="text/javascript" src="/Public/ybt/js/layer/mobile/layer.js"></script>
 <script type="text/javascript">
 	function logout() {
@@ -417,7 +418,18 @@
             // console.log(1),
 	});
 	}
-	
+    layui.use(['layer','jquery','form'],function(){
+        var layer = layui.layer;
+        var jquery = layer.jquery;
+        var form = layui.form;
+        form.render("select");
+        form.on('submit(s)',function(data){
+            $.post("/index/add/sign_in",(data.field),function(res){
+            layer.msg(res.msg ? res.msg :'请求失败',{time:1500},function(){
+            })
+        });
+        });
+    });
 </script>
 
 

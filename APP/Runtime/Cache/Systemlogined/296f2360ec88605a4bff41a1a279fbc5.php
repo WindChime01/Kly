@@ -1,4 +1,106 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html><html lang="en">	<head>		<meta charset="utf-8" />		<title>Tables - Ace Admin</title>		<meta name="description" content="Static &amp; Dynamic Tables" />		<meta name="viewport" content="width=device-width, initial-scale=1.0" />		<!--basic styles-->		<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />		<link href="__PUBLIC__/css/bootstrap-responsive.min.css" rel="stylesheet" />		<link href="__PUBLIC__/css/animate.min.css" rel="stylesheet" />		<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css" />		<style type="text/css" title="currentStyle">			@import "__PUBLIC__/css/TableTools.css";		</style>		<!--[if IE 7]>		  <link rel="stylesheet" href="__PUBLIC__/css/font-awesome-ie7.min.css" />		<![endif]-->		<!--page specific plugin styles-->		<!--fonts-->		<!--bbc styles-->		<link rel="stylesheet" href="__PUBLIC__/css/bbc.min.css" />		<link rel="stylesheet" href="__PUBLIC__/css/bbc-responsive.min.css" />		<link rel="stylesheet" href="__PUBLIC__/css/bbc-skins.min.css" />		<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>		<!--[if lte IE 8]>		  <link rel="stylesheet" href="__PUBLIC__/css/bbc-ie.min.css" />		<![endif]-->		<!--inline styles if any-->	</head>	<body>		<!--导航-->		<div class="navbar navbar-inverse">			<div class="navbar-inner">				<div class="container-fluid">					<a href="#" class="brand">						<small>							<i class="icon-leaf"></i>							内部销售系统						</small>					</a><!--/.brand-->					<ul class="nav ace-nav pull-right">						<li class="light-blue user-profile">							<a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">								<img class="nav-user-photo" src="__PUBLIC__/avatars/avatar2.png"/>								<span id="user_info">									<small>管理员</small>									<?php echo (session('adminusername')); ?>								</span>								<i class="icon-caret-down"></i>							</a>							<ul class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer" id="user_menu">								<li>									<a href="<?php echo U(GROUP_NAME.'/Index/Logout');?>">										<i class="icon-off"></i>										安全退出									</a>								</li>							</ul>						</li>					</ul><!--/.ace-nav-->				</div><!--/.container-fluid-->			</div><!--/.navbar-inner-->		</div>                <style>#page_search input{ border:0px; background:#ccc;color:#ffffff; margin-left:5px;}#page_search .current{ background:#005580; color:#ffffff;}.page a{font-size:16px;}a.active{ color:#C30 !important; font-size:18px;}</style>                		<div class="container-fluid" id="main-container">			<a id="menu-toggler" href="#">				<span></span>			</a>			<!--边栏-->			<div id="sidebar">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>Tables - Ace Admin</title>
+
+
+
+		<meta name="description" content="Static &amp; Dynamic Tables" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+		<!--basic styles-->
+
+
+
+		<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+
+		<link href="__PUBLIC__/css/bootstrap-responsive.min.css" rel="stylesheet" />
+
+		<link href="__PUBLIC__/css/animate.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css" />
+
+
+
+		<style type="text/css" title="currentStyle">
+
+			@import "__PUBLIC__/css/TableTools.css";
+
+		</style>
+
+
+
+		<!--[if IE 7]>
+
+		  <link rel="stylesheet" href="__PUBLIC__/css/font-awesome-ie7.min.css" />
+
+		<![endif]-->
+
+
+
+		<!--page specific plugin styles-->
+
+
+
+		<!--fonts-->
+
+
+
+		<!--bbc styles-->
+
+
+
+		<link rel="stylesheet" href="__PUBLIC__/css/bbc.min.css" />
+
+		<link rel="stylesheet" href="__PUBLIC__/css/bbc-responsive.min.css" />
+
+		<link rel="stylesheet" href="__PUBLIC__/css/bbc-skins.min.css" />
+
+		<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+
+		<!--[if lte IE 8]>
+
+		  <link rel="stylesheet" href="__PUBLIC__/css/bbc-ie.min.css" />
+
+		<![endif]-->
+
+
+
+		<!--inline styles if any-->
+
+	</head>
+
+
+
+	<body>
+
+		<!--导航-->
+
+		<div class="navbar navbar-inverse">			<div class="navbar-inner">				<div class="container-fluid">					<a href="#" class="brand">						<small>							<i class="icon-leaf"></i>							内部销售系统						</small>					</a><!--/.brand-->					<ul class="nav ace-nav pull-right">						<li class="light-blue user-profile">							<a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">								<img class="nav-user-photo" src="__PUBLIC__/avatars/avatar2.png"/>								<span id="user_info">									<small>管理员</small>									<?php echo (session('adminusername')); ?>								</span>								<i class="icon-caret-down"></i>							</a>							<ul class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer" id="user_menu">								<li>									<a href="<?php echo U(GROUP_NAME.'/Index/Logout');?>">										<i class="icon-off"></i>										安全退出									</a>								</li>							</ul>						</li>					</ul><!--/.ace-nav-->				</div><!--/.container-fluid-->			</div><!--/.navbar-inner-->		</div>                <style>#page_search input{ border:0px; background:#ccc;color:#ffffff; margin-left:5px;}#page_search .current{ background:#005580; color:#ffffff;}.page a{font-size:16px;}a.active{ color:#C30 !important; font-size:18px;}</style>                
+
+
+
+		<div class="container-fluid" id="main-container">
+
+			<a id="menu-toggler" href="#">
+
+				<span></span>
+
+			</a>
+
+
+
+			<!--边栏-->
+
+			<div id="sidebar">
 
 				<div id="sidebar-shortcuts">
 
@@ -97,4 +199,223 @@
 		$('#apply_way').submit();
 	}
 	
-</script>			<div id="main-content" class="clearfix">				<div id="breadcrumbs">					<ul class="breadcrumb">						<li>							<i class="icon-home"></i>							<a href="#">Home</a>							<span class="divider">								<i class="icon-angle-right"></i>							</span>						</li>						<li class="active">资金管理</li>					</ul><!--.breadcrumb-->				</div>				<div id="page-content" class="clearfix">					<div class="page-header position-relative">						<h1> 钱包流水明细 </h1>					</div><!--/.page-header-->					<div class="row-fluid">						<!--PAGE CONTENT BEGINS HERE-->						<form id="table-searchbar" method="GET" action="<?php echo U(GROUP_NAME.'/Jinbidetail/fildetail');?>" class="form-inline well well-small">							<div class="row-fluid">&nbsp;&nbsp;用户名				                <input type="text" class="input-small" name="account" value="<?php echo $_GET['account'];?>">    		                        &nbsp;&nbsp;开始日期		                        <input type="date" value="<?php echo $_GET['start_time'];?>"class="input-small" name="start_time" style="width:120px">						        &nbsp;&nbsp;截止日期								<input type="date" value="<?php echo $_GET['end_time'];?>" class="input-small" name="end_time" style="width:120px">								<button type="submit" class="btn btn-small no-border" id="btn-query" type="button"><i class="icon-search"></i>查询</button>								<!--&nbsp;&nbsp;开始日期		                        <input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="input-small" id="start_time">						        &nbsp;&nbsp;截止日期								<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="input-small" id="end_time">								<button type="button"  onclick="return clear1()" class="btn btn-success btn-small no-border" id="btn-compute" type="button">导出报表</button>		-->											<button type="button"  onclick="return clear1()" class="btn btn-success btn-small no-border" >导出流水</button>							</div>						</form>						<div class="row-fluid">							<table id="table_report" class="table table-striped table-bordered table-hover">								<thead>									<tr>										<th class="center">ID</th>										<th>用户ID</th>										<th>姓名</th>										<th>增加金额</th>										<th>减少金额</th>										<th>添加时间</th>										<th>备注</th>									</tr>								</thead>								<tbody>									<?php if(is_array($list)): foreach($list as $key=>$v): ?><tr>											<td><?php echo ($v["id"]); ?></td>											<td><?php echo ($v["user_id"]); ?></td>											<td><?php echo ($v["truename"]); ?></td>											<td><?php echo ($v["amount"]); ?></td>											<td>0</td>											<td><?php echo (date('Y-m-d H:i:s',$v["addtime"])); ?></td>											<td><?php echo ($v["desc"]); ?></td>										</tr><?php endforeach; endif; ?>									<tr>										<td colspan="12" style="text-align:center;padding:10px;"><?php echo ($page); ?></td>									</tr>								</tbody>							</table>						</div>						<!--PAGE CONTENT ENDS HERE-->					</div><!--/row-->				</div><!--/#page-content-->			</div><!--/#main-content-->		</div><!--/.fluid-container#main-container-->		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">			<i class="icon-double-angle-up icon-only bigger-110"></i>		</a>		<!--basic scripts-->		<script src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>		<script src="__PUBLIC__/js/bootstrap.min.js"></script>		<!--page specific plugin scripts-->		<script src="__PUBLIC__/js/bootbox.min.js"></script>		<script src="__PUBLIC__/js/jquery.dataTables.min.js"></script>		<script src="__PUBLIC__/js/jquery.dataTables.bootstrap.js"></script>		<script src="__PUBLIC__/js/TableTools.min.js"></script>		<!--bbc scripts-->		<script src="__PUBLIC__/js/bbc-elements.min.js"></script>		<script src="__PUBLIC__/js/bbc.min.js"></script>		<script src="__PUBLIC__/js/bootstrap.notification.js"></script>		<script src="__PUBLIC__/js/jquery.easing.1.3.js"></script>		<script type="text/javascript">			function clear1(){			    if(confirm("确认要导出元气值相关流水吗?")){			        $('#table-searchbar').attr('action',"<?php echo U(GROUP_NAME .'/Jinbidetail/excelFil');?>").submit();			        $('#table-searchbar').removeAttr('action');			    }			}		</script>					<!--inline scripts related to this page-->	</body></html>
+</script>
+
+
+
+			<div id="main-content" class="clearfix">
+
+				<div id="breadcrumbs">
+
+					<ul class="breadcrumb">
+
+						<li>
+
+							<i class="icon-home"></i>
+
+							<a href="#">Home</a>
+
+
+
+							<span class="divider">
+
+								<i class="icon-angle-right"></i>
+
+							</span>
+
+						</li>
+
+						<li class="active">资金管理</li>
+
+					</ul><!--.breadcrumb-->
+
+				</div>
+
+
+
+				<div id="page-content" class="clearfix">
+
+					<div class="page-header position-relative">
+
+						<h1> 钱包流水明细 </h1>
+
+					</div><!--/.page-header-->
+
+
+
+					<div class="row-fluid">
+
+						<!--PAGE CONTENT BEGINS HERE-->
+
+						<form id="table-searchbar" method="GET" action="<?php echo U(GROUP_NAME.'/Jinbidetail/fildetail');?>" class="form-inline well well-small">
+
+							<div class="row-fluid">&nbsp;&nbsp;用户名
+
+				                <input type="text" class="input-small" name="account" value="<?php echo $_GET['account'];?>">    
+
+		                        &nbsp;&nbsp;开始日期
+
+		                        <input type="date" value="<?php echo $_GET['start_time'];?>"class="input-small" name="start_time" style="width:120px">
+
+						        &nbsp;&nbsp;截止日期
+
+								<input type="date" value="<?php echo $_GET['end_time'];?>" class="input-small" name="end_time" style="width:120px">
+
+								<button type="submit" class="btn btn-small no-border" id="btn-query" type="button"><i class="icon-search"></i>查询</button>
+
+								<!--&nbsp;&nbsp;开始日期
+
+		                        <input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="input-small" id="start_time">
+
+						        &nbsp;&nbsp;截止日期
+
+								<input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="input-small" id="end_time">
+
+								<button type="button"  onclick="return clear1()" class="btn btn-success btn-small no-border" id="btn-compute" type="button">导出报表</button>		-->			
+								<button type="button"  onclick="return clear1()" class="btn btn-success btn-small no-border" >导出流水</button>
+
+							</div>
+
+						</form>
+
+
+
+						<div class="row-fluid">
+
+							<table id="table_report" class="table table-striped table-bordered table-hover">
+
+								<thead>
+
+									<tr>
+
+										<th class="center">ID</th>
+
+										<th>用户ID</th>
+
+										<th>姓名</th>
+
+										<th>增加金额</th>
+
+										<th>减少金额</th>
+
+										<th>添加时间</th>
+
+										<th>备注</th>
+
+									</tr>
+
+								</thead>
+
+								<tbody>
+
+									<?php if(is_array($list)): foreach($list as $key=>$v): ?><tr>
+
+											<td><?php echo ($v["id"]); ?></td>
+
+											<td><?php echo ($v["user_id"]); ?></td>
+
+											<td><?php echo ($v["truename"]); ?></td>
+
+											<td><?php echo ($v["amount"]); ?></td>
+
+											<td>0</td>
+
+											<td><?php echo (date('Y-m-d H:i:s',$v["addtime"])); ?></td>
+
+											<td><?php echo ($v["desc"]); ?></td>
+
+										</tr><?php endforeach; endif; ?>
+
+									<tr>
+
+										<td colspan="12" style="text-align:center;padding:10px;"><?php echo ($page); ?></td>
+
+									</tr>
+
+								</tbody>
+
+							</table>
+
+						</div>
+
+						<!--PAGE CONTENT ENDS HERE-->
+
+					</div><!--/row-->
+
+				</div><!--/#page-content-->
+
+			</div><!--/#main-content-->
+
+		</div><!--/.fluid-container#main-container-->
+
+
+
+		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+
+			<i class="icon-double-angle-up icon-only bigger-110"></i>
+
+		</a>
+
+
+
+		<!--basic scripts-->
+
+		<script src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+
+
+
+		<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+
+
+
+		<!--page specific plugin scripts-->
+
+		<script src="__PUBLIC__/js/bootbox.min.js"></script>
+
+		<script src="__PUBLIC__/js/jquery.dataTables.min.js"></script>
+
+		<script src="__PUBLIC__/js/jquery.dataTables.bootstrap.js"></script>
+
+		<script src="__PUBLIC__/js/TableTools.min.js"></script>
+
+		<!--bbc scripts-->
+
+
+
+		<script src="__PUBLIC__/js/bbc-elements.min.js"></script>
+
+		<script src="__PUBLIC__/js/bbc.min.js"></script>
+
+	    <script src="__PUBLIC__/layui/layui.all.js"></script>
+
+
+		<script src="__PUBLIC__/js/bootstrap.notification.js"></script>
+
+		<script src="__PUBLIC__/js/jquery.easing.1.3.js"></script>
+
+		<script type="text/javascript">
+
+function clear1(){
+		layer.confirm("确定要导出记录吗？",function(){
+			$.ajax({
+				url: "/auto/timing/excel",
+				type: "POST",
+				success: function(res){
+					layer.closeAll();
+					layer.msg(res.msg,{time:1500},function(){
+						if (res.status == 1){
+							window.parent.location.reload();
+						}
+					})
+				}
+			})
+		})
+	}
+
+		</script>			
+
+		<!--inline scripts related to this page-->
+
+	</body>
+
+</html>
