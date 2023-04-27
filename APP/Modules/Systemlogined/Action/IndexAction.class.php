@@ -7,7 +7,60 @@
 	 */
 
 	Class IndexAction extends CommonAction{
-
+	//删除抽奖奖品
+	public function delete_prize(){
+		$delete = M('kly_prize_set')->where(['id'=>$_GET['id']])->delete();
+		if($delete){
+			$this->success('删除成功',U(GROUP_NAME .'/index/prize_set'));
+		}else{
+			$this->error('删除失败');
+		}
+	}
+	//修改抽奖奖品
+	public function edit_prize(){
+		// dump($_GET);
+		$list = M('kly_prize_set')->where(['id'=>$_GET['id']])->find();
+		if($_POST){
+		if($_POST['prize_name'] != $list['prize_name'] || $_POST['probability'] != $list['probability']){
+			// dump($_POST);die;
+			$save = M('kly_prize_set')->where(['id'=>$_GET['id']])->save(['prize_name'=>$_POST['prize_name'],'probability'=>$_POST['probability']]);
+			if($save){
+				$this->success('修改成功',U(GROUP_NAME .'/index/prize_set'));
+			}else{
+				$this->error('修改失败');
+			}
+		}else{
+			$this->success('修改内容与原内容一致',U(GROUP_NAME .'/index/prize_set'));
+		}
+		die;
+	}
+		$this->assign('list',$list);
+		$this->display();
+	}
+	//添加抽奖奖品
+	public function add_prize(){
+		$data = I('post.');
+		if($data){
+		// dump($data);die;
+		$data['addtime'] = time();
+		$data['updatetime'] = time();
+		$add = M('kly_prize_set')->add($data);
+		if($add){
+			$this->success('添加成功',U(GROUP_NAME .'/index/prize_set'));
+		}else{
+			$this -> error('添加失败');
+		}
+		die;
+	}
+	$this->display();
+	}
+	//抽奖奖品设置
+	public function prize_set(){
+		$list = M('kly_prize_set')->select();
+		// dump($list);
+		$this->assign('list',$list);
+		$this->display();
+	}
 		/**
 
 		 * 后台首页视图

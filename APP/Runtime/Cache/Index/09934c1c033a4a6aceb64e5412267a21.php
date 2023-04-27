@@ -252,9 +252,7 @@
 				<p style="font-size:14px;color:#003333">ID： <?php echo ($minfo["id"]); ?></p>
 				<p style="color:#333333;">账号：<?php echo ($minfo["username"]); ?></p>
 				<button lay-submit lay-filter="s" style="color:#333333;font-size: 24px;width: 18%;;position: absolute;margin-left: 55%;margin-top: -10%;border-radius: 30%;">签到</button>
-				<!--<p>直推人数：<?php echo ($ztnum); ?></p>-->
 
-				<!--<p>团队人数：<?php echo ($tdnum); ?></p>-->
 				<?php if($minfo["is_partner"] == 1): ?><a class="partner" href="#"><img src="/Public/ybt/image/new/partner.png"></a><?php endif; ?>				
 			</div>
 
@@ -285,7 +283,7 @@
 					<a href="<?php echo U('Index/index/wallet');?>" style="margin-left:-12px;font-size:14px">我的资产</a>
 					<a href="<?php echo U('Index/index/applylist');?>" style="margin-left:12%;font-size:14px">雇佣</a>
 					<a href="<?php echo U('Index/account/myAccount');?>" style="margin-left:12%;font-size:14px">我的团队</a>
-					<a href="<?php echo U('Index/index/service');?>" style="margin-left:12%;font-size:14px">分享</a>
+					<a href="<?php echo U('Index/index/service');?>" style="margin-left:12%;font-size:14px">邀请码</a>
 				</li>
 				<li>
 					<img class="icon" style="margin-left:-8px"  src="/Public/ybt/image/center/icon/guanyuwomen.png" >
@@ -296,8 +294,8 @@
 									
 				<li>
 					<a href="" style="margin-left:-12px;font-size:14px">关于我们</a>
-					<a href="javascript:;" style="margin-left:9%;font-size:14px" onclick="yqm();">邀请码</a>
-					<a href="<?php echo U('Index/index/bank');?>" style="margin-left:13%;font-size:14px">银行卡</a>
+					<a href="<?php echo U('Index/index/prize');?>" style="margin-left:12%;font-size:14px">抽奖</a>
+					<a href="<?php echo U('Index/index/bank');?>" style="margin-left:14.5%;font-size:14px">银行卡</a>
 					<a href="javascript:;" style="margin-left:10%;font-size:14px" onclick="logout();">退出登录</a>
 				</li>
 				
@@ -405,18 +403,6 @@
 		      //layer.close(index);
 		    }
 		});
-	}
-	function yqm(){
-        layer.open({
-            type: 2,
-            closeBtn: false,
-            shadeClose: true,
-            area: ['600px',"700px"],
-			function(index){
-			window.location.href = "<?php echo U('Index/Index/logout');?>";
-			}
-            // console.log(1),
-	});
 	}
     layui.use(['layer','jquery','form'],function(){
         var layer = layui.layer;

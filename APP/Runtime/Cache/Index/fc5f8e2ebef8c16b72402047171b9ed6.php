@@ -12,7 +12,7 @@
 
 	<!-- 屏蔽-->
 
-	<title>银行卡</title>
+	<title>抽奖活动会场</title>
 
 	<meta name="keywords" content=" ">
 
@@ -55,7 +55,7 @@
 	<script src="/Public/ybt/js/layer.js"></script>
 	<style>
 		body{
-	    background-color: white;
+	    background:url(/Public/Uploads/780.jpg) ;
 	}
 		.slideBox{
 			width:90%;
@@ -161,6 +161,11 @@
 		#case7{
 			 width:auto;
 		}
+        .main_now_tab{
+            background:url('/Public/Uploads/R-C\ \(1\).jpg');
+            width: 500px;
+            height: 200px;
+        }
 	</style>
 </head>
 
@@ -175,7 +180,7 @@
 	
 		<div class="">
             <a  href="javascript:history.back(-1)" ><i class="icon icon-left" style="padding-top:10%;padding-left:2%"></i></a>
-			<a class="top-title" style="font-size:32px;text-align:center;color:#0A294F;">银行卡信息</a>
+			<a class="top-title" style="font-size:32px;text-align:center;color:#0A294F;">抽奖活动会场</a>
 			
 			 <hr class="hr0" />  
 		</div>
@@ -186,29 +191,17 @@
 		<div class="row" style="width:95%;border-radius:5px;margin:10px auto;margin-top:0;">
 
 			<div class="main_now_tab">
-				<div class="content-padded lobby-nav">
-				    <span style="margin-left:-2%;font-size:16px">银行名称:</span>
-                    <input type="text" id="" name="bank_name" value="<?php echo ($bank["bank_name"]); ?>"  style="margin-left:20%;height:36px;width:80%;margin-bottom:5%;border-color:#C4C8CC" >
-                    </div>
-				<div class="content-padded lobby-nav">
-				    <span style="margin-left:-2%;font-size:16px">开户支行:</span>
-                    <input type="text" id="" name="sub_branch" value="<?php echo ($bank["sub_branch"]); ?>"  style="margin-left:20%;height:36px;width:80%;margin-bottom:5%;border-color:#C4C8CC" >
-                    </div>
-   				<div class="content-padded lobby-nav">
-				    <span style="margin-left:-2%;font-size:16px">银行卡号:</span>
-                    <input type="text" id="" name="account_bank" value="<?php echo ($bank["account_bank"]); ?>"  style="margin-left:20%;height:36px;width:80%;margin-bottom:5%;border-color:#C4C8CC" >
-                    </div>
-				<div class="content-padded lobby-nav">
-				    <span style="margin-left:-4%;font-size:14px">银行账户名:</span>
-                    <input type="text" id="" name="account_name" value="<?php echo ($bank["account_name"]); ?>"  style="margin-left:20%;height:36px;width:80%;margin-bottom:5%;border-color:#C4C8CC" >
-                    </div>
-				<a lay-submit class="button button-success" lay-filter="s" style="margin-top:">提交</a>
-				<a lay-submit class="button button-success" lay-filter="j" style="margin-top:">解绑</a>
-
+                <h2 style="margin-left: 30%;margin-top: 5%;">一等奖：<?php echo ($prize1); ?></h2>
+                <h2 style="margin-left: 30%;margin-top: 3%;">二等奖：<?php echo ($prize2); ?></h2>
+                <h2 style="margin-left: 30%;margin-top: 3%;">三等奖：<?php echo ($prize3); ?></h2>
+				<a class="button button-success" style="margin-top: 10%;margin-left: 25%;width: 50%;" onclick="all_prize()">查看所有奖品</a>
 
 			</div>
-        
+
 		</div>
+        <h3 style="text-align:center;color:greenyellow">剩余抽奖次数：<?php echo ($prize_num); ?></h3>
+        <a lay-submit class="button button-success" lay-filter="j" style="width: 60%;margin-left: 20%;margin-top: 5%;background-color: aquamarine;">摇一摇</a>
+        <a lay-submit class="button button-success" lay-filter="log" style="width: 60%;margin-left: 20%;background-color: aquamarine;" onclick="my_prize()">我的奖品</a>
 </form>
 	</div>
 
@@ -224,6 +217,22 @@
 <script type="text/javascript" src="/Public/ybt/js/layer/mobile/layer.js"></script>
 
 <script type="text/javascript">
+    function all_prize(){
+        layer.open({
+            title: "所有奖品",
+            type: 2,
+            area: ['350px',"400px"],
+            content:"/index/index/all_prize"
+        })
+    }
+    function my_prize(){
+        layer.open({
+            title: "我的奖品",
+            type: 2,
+            area: ['350px',"400px"],
+            content:"/index/index/my_prize"
+        })
+    }
     layui.use(['layer','jquery','form'],function(){
         var layer = layui.layer;
         var jquery = layer.jquery;
@@ -238,8 +247,9 @@
             })
         });
         });
+
         form.on('submit(j)',function(data){
-            $.post("/index/add/bank_delete",(data.field),function(res){
+            $.post("/index/add/prize",(data.field),function(res){
             layer.msg(res.msg ? res.msg :'请求失败',{time:1500},function(){
             if (res.success == 1){
 				window.parent.location.reload();

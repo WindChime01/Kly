@@ -1,10 +1,6 @@
 <?php
-
+header("Content-Type:text/html;charset=utf-8");
 class TimingAction extends Action{
-    //钱包流水明细
-    public function excel(){
-        dump($_ENV);
-    }
     //每日雇佣收益
     public function income(){ 
         // dump(1);die;

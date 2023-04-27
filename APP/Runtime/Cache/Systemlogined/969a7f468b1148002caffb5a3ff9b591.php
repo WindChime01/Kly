@@ -6,7 +6,7 @@
 
 		<meta charset="utf-8" />
 
-		<title>添加雇佣</title>
+		<title>添加抽奖奖品</title>
 
 
 
@@ -225,7 +225,7 @@
 
 						<li>
 
-							<a href="#">添加雇佣</a>
+							<a href="#">添加抽奖奖品</a>
 
 
 
@@ -249,7 +249,7 @@
 
 						<h1>
 
-							添加雇佣
+							添加抽奖奖品
 
 						</h1>
 
@@ -261,57 +261,17 @@
 
 						<!--PAGE CONTENT BEGINS HERE-->
 
-							<form class="form-horizontal"  enctype="multipart/form-data" action="<?php echo U(GROUP_NAME .'/add/addgoods');?>" method="post">
+							<form class="form-horizontal"  enctype="multipart/form-data"  method="post">
 
 								<div class="control-group">
 
-									<label class="control-label" for="title"> 雇佣名称</label>
+									<label class="control-label" for="prize_name">奖品名称</label>
 
 
 
 									<div class="controls">
 
-										<input type="text" value="" name="goods_name" id="title" placeholder="" />
-
-									</div>
-
-								</div>
-
-								<!--<div class="control-group">-->
-
-								<!--	<label class="control-label" for="tid"> 分类</label>-->
-
-
-
-								<!--	<div class="controls">-->
-
-								<!--	   <select name="tid">-->
-
-								<!--	     <option value="-1">请选择分类</option>	   -->
-
-								<!--			<?php if(is_array($types)): foreach($types as $key=>$type): ?>-->
-
-													 
-
-								<!--					<option value="<?php echo ($type["id"]); ?>"><?php echo ($type["name"]); ?></option>-->
-
-								<!--<?php endforeach; endif; ?>-->
-
-								<!--		</select>-->
-
-								<!--	</div>-->
-
-								<!--</div>-->
-
-								<div class="control-group">
-
-									<label class="control-label" for="price"> 单价（元）</label>
-
-
-
-									<div class="controls">
-
-										<input type="text" value="" name="price" id="price" placeholder="" />
+										<input type="text" required="required" value='' name="prize_name" id="prize_name" placeholder="" />
 
 									</div>
 
@@ -319,101 +279,30 @@
 
 								<div class="control-group">
 
-									<label class="control-label" for="stock"> 库存</label>
+									<label class="control-label" for="probability">概率（单位：%）</label>
 
 
 
 									<div class="controls">
 
-										<input type="text" value="" name="stock" id="stock" placeholder="" />
-
-									</div>
-
-								</div>		
-
-
-
-								<div class="control-group">
-
-									<label class="control-label" for="gonglv"> 每日收益</label>
-
-
-
-									<div class="controls">
-
-										<input type="text" value="" name="income" id="gonglv" placeholder="" />
-
+										<input type="text" required="required" value='' name="probability" id="probability" placeholder="" />
+                                        <p style="color: grey;">例：1就表示1%概率，50就表示50%概率<p>
 									</div>
 
 								</div>	
 
-								<div class="control-group">
-
-									<label class="control-label" for="yszq"> 雇佣天数</label>
-
-
-
-									<div class="controls">
-
-										<input type="text" value="" name="hire_day" id="yszq" placeholder="" />
-
-									</div>
-
-								</div>	
-
-								<!--<div class="control-group">-->
-
-								<!--	<label class="control-label" for="shouyi"> 收益</label>-->
-
-
-
-								<!--	<div class="controls">-->
-
-								<!--		<input type="text" value="" name="shouyi" id="shouyi" placeholder="" /> /每小时-->
-
-								<!--	</div>-->
-
-								<!--</div>	-->
 
                                 
 
-                                   <div class="control-group">
-
-									<label class="control-label" for="is_on"> 上下架</label>
-
-
-									<div class="controls">
-
-										
-
-                                        
-
-                                          <select name="status">
-
-                                            <option value="0" selected="selected">上架</option>
-
-                                            <option value="1" >下架</option>
-
-                                         </select>
-
-                                        
-
-                                        
-
-                                        
-
-									</div>
-
-								</div>	
               						
 
 								<div class="form-actions">
 
-									<button class="btn btn-info no-border" type="submit">
+									<button class="btn btn-info no-border" type="submit" >
 
 										<i class="icon-ok bigger-110"></i>
 
-										保存添加
+										保存设置
 
 									</button>
 

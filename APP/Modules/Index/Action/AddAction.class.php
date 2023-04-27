@@ -1,5 +1,42 @@
 <?php
 Class AddAction extends CommonAction{
+    //抽奖
+    public function prize(){ 
+        $todaytime = strtotime(date('Ymd'));    // 今天零点时间戳
+		$user_prize = M('kly_prize_log')->where(['user_id'=>session('mid'),'addtime'=>['egt',$todaytime]])->select();
+        if(count($user_prize)<3){
+        $data = M('kly_prize_set')->order('probability')->select();
+        // dump($data);die;
+        $res = rand(1,10000);
+        // dump($res);die;
+        foreach ($data as $key=>$val){
+            // dump($data[$key]['probability']);die;
+            if($res<$data[$key]['probability']*100){
+                // dump($data[$key]['name']);
+                // $max = $res;
+                $name = $data[$key]['prize_name'];
+                $data = [
+                    'user_id'=>session('mid'),
+                    'prize_name'=>$name,
+                    'prize_id'=>$data[$key]['id'],
+                    'addtime'=>time(),
+                ];
+                $add = M('kly_prize_log')->add($data);
+                    $this ->ajaxReturn(array("msg"=>"恭喜中奖,奖品为".$name.'',"success"=>1));
+                    die;
+            }
+        }
+        $data = [
+            'user_id'=>session('mid'),
+            'prize_name'=>'未中奖',
+            'addtime'=>time(),
+        ];
+        $add = M('kly_prize_log')->add($data);
+        $this ->ajaxReturn(array("msg"=>"很遗憾未中奖","success"=>1));
+    }else{
+        $this ->ajaxReturn(array("msg"=>"今日抽奖次数已用完","success"=>-1));
+    }
+    }
     //签到
     public function sign_in(){
         $userinfor = M('kly_sign_log')->where(['user_id'=>session('mid')])->order('sign_time desc')->find();      //最近签到的时间
