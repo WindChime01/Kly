@@ -28,7 +28,7 @@ Class IndexAction extends CommonAction{
 	}
 	//抽奖活动会场
 	public function prize(){
-		$prize = M('kly_prize_set')->field('prize_name')->order('probability')->limit(0,3)->select();
+		$prize = M('kly_prize_set')->field('prize_name')->order('probability')->limit(3)->select();
 		$num = 1;
 		$prize_num = 3;			//初始抽奖次数
 		foreach($prize as $key=>$val){

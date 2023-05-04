@@ -214,7 +214,6 @@
 
 <script type="text/javascript" src="/Public/ybt/js/jquery-3.3.1/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="/Public/ybt/js/layui.js"></script>
-<script type="text/javascript" src="/Public/ybt/js/layer/mobile/layer.js"></script>
 
 <script type="text/javascript">
     function all_prize(){

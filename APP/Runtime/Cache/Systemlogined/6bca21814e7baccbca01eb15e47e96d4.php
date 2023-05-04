@@ -233,9 +233,9 @@
 
                 <form id="table-searchbar" method="POST" class="form-inline well well-small">
                     <div class="row-fluid" style="margin-bottom: 20px">&nbsp;&nbsp;
-                            <select class="span3" name="search" style="width: 100px;">
+                            <!-- <select class="span3" name="search" style="width: 100px;">
                                 <option value="1" <?php if($type == 1): ?>selected="selected"<?php endif; ?> >用户ID</option>
-                            </select>
+                            </select> -->
 
                             <select class="span3" name="sign" style="width: 100px;">
                                 <option value="0">全部</option>
@@ -243,7 +243,7 @@
                                 <option value="2" <?php if($type == 2): ?>selected="selected"<?php endif; ?> >未完成</option>
                             </select> 
                             &nbsp;&nbsp;
-                            <input type="text" class="input-small" name="content" value="<?php echo $_GET['content'];?>">    
+                            <!-- <input type="text" class="input-small" name="content" value="<?php echo $_GET['content'];?>">     -->
                            &nbsp;&nbsp;
                         <button type="submit" class="btn btn-small no-border" id="btn-query" type="button"><i class="icon-search"></i>查询</button>
                     </div>

@@ -20,9 +20,21 @@
 	public function edit_prize(){
 		// dump($_GET);
 		$list = M('kly_prize_set')->where(['id'=>$_GET['id']])->find();
+		// dump($list);
+		if($list['probability'] == ceil($list['probability'])){
+			$list['probability'] = ceil($list['probability']);
+		}else{
+			$list['probability'] = floatval($list['probability']);
+		}
 		if($_POST){
 		if($_POST['prize_name'] != $list['prize_name'] || $_POST['probability'] != $list['probability']){
 			// dump($_POST);die;
+			$prize_info = M('kly_prize_set')->field('prize_name')->select();
+			foreach ($prize_info as $key=>$val){
+				if($_POST['prize_name'] == $prize_info[$key]['prize_name'] and $_POST['probability'] == $list['probability']){
+					$this -> error('抽奖奖品名称重复');
+				}
+			}
 			$save = M('kly_prize_set')->where(['id'=>$_GET['id']])->save(['prize_name'=>$_POST['prize_name'],'probability'=>$_POST['probability']]);
 			if($save){
 				$this->success('修改成功',U(GROUP_NAME .'/index/prize_set'));
@@ -30,7 +42,7 @@
 				$this->error('修改失败');
 			}
 		}else{
-			$this->success('修改内容与原内容一致',U(GROUP_NAME .'/index/prize_set'));
+			$this->error('修改内容与原内容一致',U(GROUP_NAME .'/index/prize_set'));
 		}
 		die;
 	}
@@ -42,8 +54,15 @@
 		$data = I('post.');
 		if($data){
 		// dump($data);die;
+		$prize_info = M('kly_prize_set')->field('prize_name')->select();
+		foreach ($prize_info as $key=>$val){
+			if($data['prize_name'] == $prize_info[$key]['prize_name']){
+				$this -> error('抽奖奖品名称重复');
+			}
+		}
 		$data['addtime'] = time();
 		$data['updatetime'] = time();
+
 		$add = M('kly_prize_set')->add($data);
 		if($add){
 			$this->success('添加成功',U(GROUP_NAME .'/index/prize_set'));
@@ -58,6 +77,13 @@
 	public function prize_set(){
 		$list = M('kly_prize_set')->select();
 		// dump($list);
+		foreach($list as $key=>$val){
+			if($list[$key]['probability']==ceil($list[$key]['probability'])) {
+				$list[$key]['probability'] = ceil($list[$key]['probability']).'%';
+			}else{
+				$list[$key]['probability'] = floatval($list[$key]['probability']).'%';
+			}
+		}
 		$this->assign('list',$list);
 		$this->display();
 	}

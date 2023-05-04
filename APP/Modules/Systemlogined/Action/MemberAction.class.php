@@ -1191,7 +1191,7 @@
 	public function today_sign(){
 		// dump($_POST);
 		import("@.ORG.Util.Page");// 导入分页类
-		if($_POST['sign']==0 and !$_POST['content']){
+		if($_POST['sign']==0){
 		$list = M('member')->order('id desc')->field('id,truename')->select();
 		// dump($list);die;
 		foreach($list as $key =>$val){
@@ -1239,7 +1239,6 @@
 			}
 		}
 	}
-	// dump($list);
 		$all_count = count($list);// 查询满足要求的总记录数
 
 		$all_Page  = new Page($all_count,10);// 实例化分页类 传入总记录数
