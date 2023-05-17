@@ -61,7 +61,7 @@ class TimingAction extends Action{
                 }
         }
         }
-        //获取用户上级ID
+        //获取用户上级ID(不包括自己)
         public function up_downline($user_id){
            $id = M('member')->where(['id'=>$user_id])->getField('parent_id');
            $arr = $id;
@@ -75,7 +75,7 @@ class TimingAction extends Action{
            return $up_id;
         }
         
-                //获取用户的所有下级ID
+        //获取用户的所有下级ID(包括自己)
         public function downline($user_id){
             $user = M('member')->field('id,parent_id')->select();
             $arr = [$user_id];
@@ -93,6 +93,11 @@ class TimingAction extends Action{
                $reverse = array_reverse($up_id);
                $parentpath = implode('|',$reverse);
                $save = M('member')->where(['id'=>$id])->save(['parentpath'=>$parentpath]);
+               if($save){
+                return true;
+               }else{
+                return false;
+               }
         }
         //假自动入单
         public function voucher($id){
@@ -157,5 +162,73 @@ class TimingAction extends Action{
         }else{
             dump('该账户'.$id.'已绑定上级不可再次绑定');
         }
+        }
+        //更新团队业绩
+        public function achievement(){
+            $user_id = M('member')->select();
+            foreach($user_id as $val){
+                $achievement = M('member')->where(['id'=>['in',array_slice($this->downline($val['id']),1)]])->sum('yuanqi');
+                $up = M('member')->where(['id'=>$val['id']])->save(['achievement'=>$achievement]);
+                if($up){
+                dump($val['id'].'账号更新'.$achievement.'团队业绩');
+                }
+            }
+        }
+        //改上级，团队解绑并更改族谱
+        public function unbind(){
+            // die('404');
+            $id = 29929;        //需要更改ID
+            $old_id = $this->up_downline($id);      //旧上级
+            $ids = 29935;       //新上级
+            //改个人上级以及个人族谱
+            M('member')->startTrans();      //开启事务
+            $downline_count = M('member')->where(['parent_id'=>$ids])->count();
+            if($downline_count<2){
+            $change = M('member')->where(['id'=>$id])->save(['parent_id'=>$ids]);
+            $parentpath = $this->parentpath($id);
+            if(!$change and $parentpath==false){
+                dump('改写个人上级以及个人族谱失败');
+                M('member')->rollback();        //事务回滚
+                die;
+            }
+            //改下级族谱
+            $downline = array_slice($this->downline($id),1);
+            foreach($downline as $val){
+                $downline_parentpath = $this->parentpath($val);
+                if($downline_parentpath == false){
+                    dump('改写下级族谱失败');
+                    M('member')->rollback();        //事务回滚
+                    die;
+                }
+            }
+            //调整业绩
+            $parentpaths = M('member')->where(['id'=>$id])->getField('parentpath');
+            $parent = explode('|',$parentpaths);
+            //下级业绩与个人业绩之和
+            $performance = M('member')->where(['id'=>['in',$this->downline($id)]])->sum('yuanqi');      
+            // dump($performance);die;
+                //减旧上级团队业绩
+                $Dec = M('member')->where(['id'=>['in',$old_id]])->setDec('achievement',$performance);
+                if($Dec){
+                    dump('扣除ID'.$id.'旧上级业绩'.$performance);
+                }else{
+                    dump('扣除ID'.$id.'旧上级业绩失败');
+                }
+                //加新上级团队业绩
+                $Inc = M('member')->where(['id'=>['in',$this->up_downline($id)]])->setInc('achievement',$performance);
+                if($Inc){
+                    dump('增加ID'.$id.'新上级业绩'.$performance);
+                }else{
+                    dump('增加ID'.$id.'新上级业绩失败');
+                }
+                if($Dec and $Inc){
+                    M('member')->commit();          //提交事务
+                }else{
+                    M('member')->rollback();        //事务回滚
+                }
+        }else{
+            dump('该ID'.$ids.'下级已满');
+        }
+
         }
 }
