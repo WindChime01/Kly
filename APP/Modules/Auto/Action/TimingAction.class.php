@@ -61,6 +61,7 @@ class TimingAction extends Action{
                 }
         }
         }
+        //获取用户上级ID
         public function up_downline($user_id){
            $id = M('member')->where(['id'=>$user_id])->getField('parent_id');
            $arr = $id;
@@ -76,9 +77,8 @@ class TimingAction extends Action{
         
                 //获取用户的所有下级ID
         public function downline($user_id){
-            $id = M('member')->where(['id'=>$user_id])->getField('id');
             $user = M('member')->field('id,parent_id')->select();
-            $arr = [$id];
+            $arr = [$user_id];
             foreach ($user as $val){
                 if(in_array($val['parent_id'],$arr)) {
                     $arr[] = $val['id'];
@@ -87,28 +87,75 @@ class TimingAction extends Action{
             unset($user);
             return $arr;
         }
-        public function basecode(){
-        $url = 'https://www.baidu.com/';
-        //打开缓冲区
-        ob_start();
-        //生成二维码图片
-        include_once "plugins/phpqrcode/phpqrcode.php";
-        $returnData = QRcode::pngString($url,false, "H", 8);
-        //这里就是把生成的图片流从缓冲区保存到内存对象上，使用base64_encode变成编码字符串，通过json返回给页面。
-        $imageString = base64_encode(ob_get_contents());
-        //关闭缓冲区
-        ob_end_clean();
-        return $imageString;
+        //写族谱
+        public function parentpath($id){
+               $up_id = $this->up_downline($id);
+               $reverse = array_reverse($up_id);
+               $parentpath = implode('|',$reverse);
+               $save = M('member')->where(['id'=>$id])->save(['parentpath'=>$parentpath]);
         }
-        public function qrcode(){
-            header('content-type:text/html;charset=utf-8');
-            $data = 'https://www.baidu.com/';
-            $level = 'Q';// 纠错级别：L、M、Q、H
-            $size = 10;//元素尺寸
-            include_once "plugins/phpqrcode/phpqrcode.php";
-            QRcode::png($data,false,$level,$size,true);
+        //假自动入单
+        public function voucher($id){
+            $userinfo = M('member')->where(['id'=>$id])->find();
+            if(!$userinfo['parent_id'] and !$userinfo['parentpath']){
+            $user = M('member')->field('id')->order('id')->select();
+            // dump($user);
+            foreach($user as $val){
+                $parent = M('member')->where(['parent_id'=>$val['id']])->select();
+                // dump($parent);
+                if(count($parent)>1){
+                    continue;
+                }else{
+                    $save = M('member')->where(['id'=>$id])->save(['parent_id'=>$val['id']]);
+                    $parentpath = $this->parentpath($id);
+                    dump('账号ID'.$id.'已自动绑定上级'.$val['id']);
+                    die;
+                }
+            }
+        }else{
+            dump('该ID'.$id.'已绑定上级');
         }
-        public function logoqrcode(){
-
+        }
+        //真自动入单    缺陷：默认按ID的顺序优先级入单 顶级账户下级不足两人无法使用
+        public function vouchers(){
+            $id = 30203;
+            $userinfo = M('member')->where(['id'=>$id])->find();
+            $maxuser = M('member')->order('id')->find();
+            $user = M('member')->where(['parent_id'=>$maxuser['id']])->field(['id'])->select();
+            $arr = [];
+            foreach ($user as $val){
+                $arr[] = $val['id'];
+            }
+            if(!$userinfo['parent_id'] and !$userinfo['parentpath']){
+            while($arr){
+                $user_id = $arr;
+                unset($arr);
+                $arr = [];
+                    foreach($user_id as $val){
+                        $users = M('member')->where(['parent_id'=>$val])->field('id')->select();
+                        if(count($users)>1){
+                        foreach($users as $val){
+                        $arr[] = $val['id'];
+                        }
+                    }else{
+                        M('member')->startTrans();      //开启事务
+                        $parent = M('member')->where(['id'=>$id])->save(['parent_id'=>$val]);
+                        $parentpath = $this->parentpath($id);
+                        $judgment = M('member')->where(['id'=>$id])->find();
+                        if($judgment['parent_id'] and $judgment['parentpath']){
+                            dump('该账户'.$id.'已自动绑定'.$val);
+                            M('member')->commit();          //提交事务
+                            die;
+                        }else{
+                            dump('绑定失败');
+                            M('member')->rollback();        //事务回滚
+                            die;
+                        }
+                    }
+                    }
+            }
+        }else{
+            dump('该账户'.$id.'已绑定上级不可再次绑定');
+        }
         }
 }

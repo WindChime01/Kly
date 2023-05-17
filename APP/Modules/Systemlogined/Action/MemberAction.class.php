@@ -15,6 +15,7 @@
 		//会员列表
 
 		public function check(){
+
 	
 			$map = $this -> _search();
             // dump($map);die;
@@ -1189,10 +1190,15 @@
 	}
 	//会员今日签到
 	public function today_sign(){
+		// $user_id = where('user_id',$_POST['user_id']);
 		// dump($_POST);
 		import("@.ORG.Util.Page");// 导入分页类
 		if($_POST['sign']==0){
-		$list = M('member')->order('id desc')->field('id,truename')->select();
+			if(!$_POST['user_id']){
+				$list = M('member')->order('id desc')->field('id,truename')->select();
+			}else{
+				$list = M('member')->where(['id'=>$_POST['user_id']])->order('id desc')->field('id,truename')->select();
+			}
 		// dump($list);die;
 		foreach($list as $key =>$val){
 			$complete = M('kly_sign_log')->where(['user_id'=>$val['id']])->order('sign_time desc')->find();
@@ -1209,7 +1215,11 @@
 		}
 	}else{
 		if($_POST['sign']==1){
-		$lists = M('member')->order('id desc')->field('id,truename')->select();
+			if(!$_POST['user_id']){
+				$lists = M('member')->order('id desc')->field('id,truename')->select();
+			}else{
+				$lists = M('member')->where(['id'=>$_POST['user_id']])->order('id desc')->field('id,truename')->select();
+			}
 		$nowtime = strtotime(date('Ymd'));  //今日零点时间戳
 		foreach($lists as $key=>$val){
 			$complete = M('kly_sign_log')->where(['user_id'=>$val['id']])->order('sign_time desc')->find();
@@ -1225,7 +1235,11 @@
 		}
 		}
 		if($_POST['sign']==2){
-			$lists = M('member')->order('id desc')->field('id,truename')->select();
+			if(!$_POST['user_id']){
+				$lists = M('member')->order('id desc')->field('id,truename')->select();
+			}else{
+				$lists = M('member')->where(['id'=>$_POST['user_id']])->order('id desc')->field('id,truename')->select();
+			}
 			$nowtime = strtotime(date('Ymd'));  //今日零点时间戳
 			foreach($lists as $key=>$val){
 				$complete = M('kly_sign_log')->where(['user_id'=>$val['id']])->order('sign_time desc')->find();
