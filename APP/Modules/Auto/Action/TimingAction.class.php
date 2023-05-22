@@ -36,11 +36,11 @@ class TimingAction extends Action{
         $this ->ajaxReturn(array("msg"=>"今天已发放奖励","success"=>-1));
     }
     }
-        public function reward(){
-            $up_downline = $this->up_downline(30618);
+        public function reward($id){
+            $up_downline = $this->up_downline($id);
             // dump($a);
             // dump($up_downline);
-            $nowlevel = M('member')->where(['id'=>30618])->getField('weighted_level');
+            $nowlevel = M('member')->where(['id'=>$id])->getField('weighted_level');
             $goods = 500;
             $levels = 0;
             $rewards =0;
@@ -121,23 +121,25 @@ class TimingAction extends Action{
             dump('该ID'.$id.'已绑定上级');
         }
         }
-        //真自动入单    缺陷：默认按ID的顺序优先级入单 顶级账户下级不足两人无法使用
+        //真自动入单    缺陷：顶级账户下级不足两人无法使用
         public function vouchers(){
-            $id = 30203;
+            $id = 30614;
             $userinfo = M('member')->where(['id'=>$id])->find();
             $maxuser = M('member')->order('id')->find();
-            $user = M('member')->where(['parent_id'=>$maxuser['id']])->field(['id'])->select();
+            $user = M('member')->where(['parent_id'=>$maxuser['id']])->field('id,prelogintime')->order('prelogintime')->select();
             $arr = [];
             foreach ($user as $val){
                 $arr[] = $val['id'];
             }
             if(!$userinfo['parent_id'] and !$userinfo['parentpath']){
             while($arr){
+                //把下级ID保存一下
                 $user_id = $arr;
+                //销毁$arr数组里的数据让数据更新
                 unset($arr);
                 $arr = [];
                     foreach($user_id as $val){
-                        $users = M('member')->where(['parent_id'=>$val])->field('id')->select();
+                        $users = M('member')->where(['parent_id'=>$val])->field('id,prelogintime')->order('prelogintime')->select();
                         if(count($users)>1){
                         foreach($users as $val){
                         $arr[] = $val['id'];
@@ -187,7 +189,7 @@ class TimingAction extends Action{
             $change = M('member')->where(['id'=>$id])->save(['parent_id'=>$ids]);
             $parentpath = $this->parentpath($id);
             if(!$change and $parentpath==false){
-                dump('改写个人上级以及个人族谱失败');
+                dump('改写个人上级或个人族谱失败');
                 M('member')->rollback();        //事务回滚
                 die;
             }
@@ -207,28 +209,28 @@ class TimingAction extends Action{
             //下级业绩与个人业绩之和
             $performance = M('member')->where(['id'=>['in',$this->downline($id)]])->sum('yuanqi');      
             // dump($performance);die;
-                //减旧上级团队业绩
-                $Dec = M('member')->where(['id'=>['in',$old_id]])->setDec('achievement',$performance);
-                if($Dec){
-                    dump('扣除ID'.$id.'旧上级业绩'.$performance);
-                }else{
-                    dump('扣除ID'.$id.'旧上级业绩失败');
-                }
-                //加新上级团队业绩
-                $Inc = M('member')->where(['id'=>['in',$this->up_downline($id)]])->setInc('achievement',$performance);
-                if($Inc){
-                    dump('增加ID'.$id.'新上级业绩'.$performance);
-                }else{
-                    dump('增加ID'.$id.'新上级业绩失败');
-                }
-                if($Dec and $Inc){
-                    M('member')->commit();          //提交事务
-                }else{
-                    M('member')->rollback();        //事务回滚
-                }
-        }else{
-            dump('该ID'.$ids.'下级已满');
-        }
+            //减旧上级团队业绩
+            $Dec = M('member')->where(['id'=>['in',$old_id]])->setDec('achievement',$performance);
+            if($Dec){
+                dump('扣除ID'.$id.'旧上级业绩'.$performance);
+            }else{
+                dump('扣除ID'.$id.'旧上级业绩失败');
+            }
+            //加新上级团队业绩
+            $Inc = M('member')->where(['id'=>['in',$this->up_downline($id)]])->setInc('achievement',$performance);
+            if($Inc){
+                dump('增加ID'.$id.'新上级业绩'.$performance);
+            }else{
+                dump('增加ID'.$id.'新上级业绩失败');
+            }
+            if($Dec and $Inc){
+                M('member')->commit();          //提交事务
+            }else{
+                M('member')->rollback();        //事务回滚
+            }
+    }else{
+        dump('该ID'.$ids.'下级已满');
+    }
 
         }
 }
